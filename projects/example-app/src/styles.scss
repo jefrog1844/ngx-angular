@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Core variables and mixins
+@import "../../../node_modules/muicss/lib/sass/mui/colors";
+
+// customize MUI variables
+$mui-primary-color: #1b4583 !default;
+$mui-primary-color-dark: #001f56 !default;
+$mui-primary-color-light: #5270b3 !default;
+
+$mui-accent-color: #f7962b !default;
+$mui-accent-color-dark: #bf6800 !default;
+$mui-accent-color-light: #ffc75d !default;
+
+$mui-base-font-size: 18px !default;
+$mui-btn-font-size: 18px !default;
+$mui-btn-font-size-sm: 18px !default;
+$mui-input-font-size: 18px !default;
+$mui-label-font-size: 18px !default;
+
+$mui-base-font-family: Roboto !default;
+
+.mui-primary-color {
+  color: $mui-primary-color;
+}
+.mui-primary-color-dark {
+  color: $mui-primary-color-dark;
+}
+.mui-primary-color-light {
+  color: $mui-primary-color-light;
+}
+.mui-accent-color {
+  color: $mui-accent-color;
+}
+.mui-accent-color-dark {
+  color: $mui-accent-color-dark;
+}
+.mui-accent-color-light {
+  color: $mui-accent-color-light;
+}
+
+@import "../../../node_modules/muicss/lib/sass/mui/variables",
+  "../../../node_modules/muicss/lib/sass/mui/mixins";
+
+// Globals
+@import "../../../node_modules/muicss/lib/sass/mui/globals";
+
+// Components
+@import "../../../node_modules/muicss/lib/sass/mui/appbar",
+  "../../../node_modules/muicss/lib/sass/mui/buttons",
+  "../../../node_modules/muicss/lib/sass/mui/containers",
+  "../../../node_modules/muicss/lib/sass/mui/panel",
+  "../../../node_modules/muicss/lib/sass/mui/divider",
+  "../../../node_modules/muicss/lib/sass/mui/table",
+  "../../../node_modules/muicss/lib/sass/mui/tabs",
+  "../../../node_modules/muicss/lib/sass/mui/dropdown",
+  "../../../node_modules/muicss/lib/sass/mui/form",
+  "../../../node_modules/muicss/lib/sass/mui/textfield",
+  "../../../node_modules/muicss/lib/sass/mui/checkbox-and-radio",
+  "../../../node_modules/muicss/lib/sass/mui/select",
+  "../../../node_modules/muicss/lib/sass/mui/grid";
+
+// Miscellaneous
+@import "../../../node_modules/muicss/lib/sass/mui/helpers",
+  "../../../node_modules/muicss/lib/sass/mui/overlay",
+  "../../../node_modules/muicss/lib/sass/mui/ripple",
+  "../../../node_modules/muicss/lib/sass/mui/typography";

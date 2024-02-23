@@ -1,0 +1,57 @@
+<lib-container>
+  <lib-row>
+    <h1>MUI Tabs Component</h1>
+
+    <h2>Default Tabs</h2>
+    <lib-panel>
+      <div id="example-tabs-default">
+        <lib-tabs>
+          <lib-tab tabId="1" label="Tab 1">Pane-1</lib-tab>
+          <lib-tab tabId="2" label="Tab 2" [active]="true">Pane-2</lib-tab>
+          <lib-tab tabId="3" label="Tab 3">Pane-3</lib-tab>
+        </lib-tabs>
+      </div>
+    </lib-panel>
+
+    <h2>Justified Tabs</h2>
+    <lib-panel>
+      <div id="example-tabs-default">
+        <lib-tabs [justified]="true">
+          <lib-tab tabId="1" label="Tab 1">Pane-1</lib-tab>
+          <lib-tab tabId="2" label="Tab 2">Pane-2</lib-tab>
+          <lib-tab tabId="3" label="Tab 3">Pane-3</lib-tab>
+        </lib-tabs>
+      </div>
+    </lib-panel>
+
+    <h2>Advanced Tabs</h2>
+    <lib-panel>
+      <div id="example-tabs-default">
+        <lib-tabs (muiChange)="change($event)">
+          <lib-tab
+            tabId="1"
+            label="Tab 1"
+            (muiSelect)="select($event)"
+            (muiDeselect)="deselect($event)"
+            >Pane-1</lib-tab
+          >
+          <lib-tab
+            tabId="2"
+            label="Tab 2"
+            [active]="true"
+            (muiSelect)="select($event)"
+            (muiDeselect)="deselect($event)"
+            >Pane-2</lib-tab
+          >
+          <lib-tab
+            tabId="3"
+            label="Tab 3"
+            (muiSelect)="select($event)"
+            (muiDeselect)="deselect($event)"
+            >Pane-3</lib-tab
+          >
+        </lib-tabs>
+      </div>
+    </lib-panel>
+  </lib-row>
+</lib-container>

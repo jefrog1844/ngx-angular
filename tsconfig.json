@@ -4,12 +4,18 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
     "skipLibCheck": true,
+    "paths": {
+      "ngx-angular": [
+        "./dist/ngx-angular"
+      ]
+    },
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
@@ -28,6 +34,6 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": false,
   }
 }

@@ -1,0 +1,64 @@
+<lib-container fluid>
+  <h1>MUI Form Component</h1>
+  <h2>Input - reactive</h2>
+  <lib-panel>
+    <div>
+      {{ result }} {{ form.value | json }}
+      <form [formGroup]="form">
+        <div>
+          <lib-input
+            formControlName="firstName"
+            label="First Name"
+            placeholder="Enter first name"
+            autofocus="true"
+          ></lib-input>
+        </div>
+        <div>
+          <lib-input
+            formControlName="lastName"
+            label="Last Name"
+            placeholder="Enter last name"
+          ></lib-input>
+        </div>
+        <div>
+          <lib-input
+            formControlName="email"
+            label="Email"
+            placeholder="Enter email"
+            type="email"
+          ></lib-input>
+        </div>
+        <div>
+          <lib-input
+            formControlName="password"
+            label="Password"
+            placeholder="Enter password"
+            type="password"
+          ></lib-input>
+        </div>
+        <div>
+          <lib-input
+            formControlName="age"
+            label="Age"
+            placeholder="Enter age"
+            type="number"
+            min="18"
+            max="100"
+          ></lib-input>
+        </div>
+        <div>
+          <lib-checkbox
+            formControlName="termsAndConditions"
+            label="Agree to terms and conditions"
+          ></lib-checkbox>
+        </div>
+        <br />
+        <lib-button
+          (click)="getResult()"
+          [disabled]="!form.valid || !form.dirty"
+          >Submit</lib-button
+        >
+      </form>
+    </div>
+  </lib-panel>
+</lib-container>

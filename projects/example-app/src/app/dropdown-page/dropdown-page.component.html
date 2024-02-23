@@ -1,0 +1,103 @@
+<lib-container>
+  <lib-row>
+    <h1>Angular Dropdowns</h1>
+
+    <h2>Dropdown (default)</h2>
+    <lib-panel>
+      <div id="example-dropdown-default">
+        <lib-dropdown
+          variant="flat"
+          color="primary"
+          label="dropdown"
+          noCaret="true"
+        >
+          <lib-dropdown-item link="appbar">Appbar</lib-dropdown-item>
+          <lib-dropdown-item link="button">Buttons</lib-dropdown-item>
+          <lib-dropdown-item link="grid">Grid</lib-dropdown-item>
+          <lib-dropdown-item link="divider">Dividers</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+    </lib-panel>
+
+    <h2>Menu Placement and Alignment</h2>
+
+    <lib-panel>
+      <!-- begin embedded angular example -->
+      <div id="example-dropdown-placement-and-alignment">
+        <!-- Placement: down, Alignment: left (default) -->
+        <lib-dropdown color="primary" label="dropdown">
+          <lib-dropdown-item>Option 1</lib-dropdown-item>
+          <lib-dropdown-item>Option 2</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+      <div>
+        <!-- Placement: down, Alignment: right -->
+        <lib-dropdown
+          color="primary"
+          label="dropdown (right aligned)"
+          alignment="right"
+        >
+          <lib-dropdown-item>Option 1</lib-dropdown-item>
+          <lib-dropdown-item>Option 2</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+      <div>
+        <!-- Placement: up, Alignment: left -->
+        <lib-dropdown color="primary" label="dropup" placement="up">
+          <lib-dropdown-item>Option 1</lib-dropdown-item>
+          <lib-dropdown-item>Option 2</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+      <div>
+        <!-- Placement: up, Alignment: right -->
+        <lib-dropdown
+          color="primary"
+          label="dropup (right aligned)"
+          placement="up"
+          alignment="right"
+        >
+          <lib-dropdown-item>Option 1</lib-dropdown-item>
+          <lib-dropdown-item>Option 2</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+      <div>
+        <!-- Placement: right, Alignment: top -->
+        <lib-dropdown color="primary" label="dropright" placement="right">
+          <lib-dropdown-item>Option 1</lib-dropdown-item>
+          <lib-dropdown-item>Option 2</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+      <div>
+        <!-- Placement: right, Alignment: bottom -->
+        <lib-dropdown
+          color="primary"
+          label="dropright (bottom aligned)"
+          placement="right"
+          alignment="bottom"
+        >
+          <lib-dropdown-item>Option 1</lib-dropdown-item>
+          <lib-dropdown-item>Option 2</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+      <div>
+        <!-- Placement: left, Alignment: top -->
+        <lib-dropdown color="primary" label="dropleft" placement="left">
+          <lib-dropdown-item>Option 1</lib-dropdown-item>
+          <lib-dropdown-item>Option 2</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+      <div>
+        <!-- Placement: left, Alignment: bottom -->
+        <lib-dropdown
+          color="primary"
+          label="dropleft (bottom aligned)"
+          placement="left"
+          alignment="bottom"
+        >
+          <lib-dropdown-item>Option 1</lib-dropdown-item>
+          <lib-dropdown-item>Option 2</lib-dropdown-item>
+        </lib-dropdown>
+      </div>
+    </lib-panel>
+  </lib-row>
+</lib-container>
