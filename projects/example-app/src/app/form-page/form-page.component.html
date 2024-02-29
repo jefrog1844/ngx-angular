@@ -4,7 +4,7 @@
   <lib-panel>
     <div>
       {{ result }} {{ form.value | json }}
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="getResult()">
         <div>
           <lib-input
             formControlName="firstName"
@@ -53,12 +53,11 @@
           ></lib-checkbox>
         </div>
         <br />
-        <lib-button
-          (click)="getResult()"
-          [disabled]="!form.valid || !form.dirty"
-          >Submit</lib-button
-        >
+        <lib-button [disabled]="!form.valid || !form.dirty">Submit</lib-button>
       </form>
+      <p>Form Value: {{ form.value | json }}</p>
+      <p>Form Status: {{ form.status }}</p>
+      <p>Form Valid: {{ form.valid }}</p>
     </div>
   </lib-panel>
 </lib-container>

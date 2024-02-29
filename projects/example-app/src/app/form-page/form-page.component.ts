@@ -39,7 +39,7 @@ export class FormPageComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      termsAndConditions: [false, Validators.required],
+      termsAndConditions: [false, Validators.pattern('true')],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: [''],
