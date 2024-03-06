@@ -39,11 +39,10 @@ export class FormPageComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      termsAndConditions: [false, Validators.pattern('true')],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: [''],
-      password: [''],
+      password: ['', Validators.required],
       age: [18],
     });
   }
