@@ -99,4 +99,22 @@
     <p>Form value: {{ f.value | json }}</p>
     <p>Form valid: {{ f.valid }}</p>
   </lib-panel>
+
+  <h2>Input - standalone (formControl & ngModel)</h2>
+  <lib-panel>
+    <lib-input
+      label="[formControl]"
+      [formControl]="inputControl"
+      placeholder="control value"
+    ></lib-input>
+    <lib-input
+      label="[(ngModel)]"
+      [(ngModel)]="inputValue"
+      name="inputValue"
+      placeholder="enter input value"
+    >
+    </lib-input>
+    <p>[formControl]: {{ inputControl.value | json }}</p>
+    <p>[(ngModel)]: {{ inputValue }}</p>
+  </lib-panel>
 </lib-container>

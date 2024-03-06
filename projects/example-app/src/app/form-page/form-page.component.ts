@@ -66,4 +66,8 @@ export class FormPageComponent {
     );
     f.reset();
   }
+
+  // Input - standalone
+  inputControl: FormControl = new FormControl('');
+  inputValue: any = 'some input value for ngModel';
 }
