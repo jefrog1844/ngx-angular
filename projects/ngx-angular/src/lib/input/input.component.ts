@@ -1,55 +1,50 @@
 import {
   AfterViewInit,
   Component,
-  DestroyRef,
   ElementRef,
-  forwardRef,
-  inject,
   Input,
   OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  ControlValueAccessor,
-  FormControl,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { noop } from 'rxjs';
+  ControlValueAccessorDirective,
+  injectNgControl,
+} from '../shared/control-value-accessor.directive';
 
 @Component({
   selector: 'lib-input',
   standalone: true,
   imports: [ReactiveFormsModule],
+  hostDirectives: [ControlValueAccessorDirective],
   template: `
     <div class="mui-textfield">
-      <input
-        #input
-        type="text"
-        [formControl]="formControl"
-        [id]="formControlName"
-      />
-      <label [for]="formControlName">
+      <input [id]="id" #input [type]="type" [formControl]="ngControl.control" />
+      <label [for]="id" [class.required]="isRequired">
         {{ label }}
       </label>
     </div>
   `,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
-      multi: true,
-    },
-  ],
+  styles: `
+  label {
+    &.required {
+      &:after {
+        content: "*";
+        color: red;
+      }
+    }
+  }
+  `,
 })
-export class InputComponent
-  implements ControlValueAccessor, OnInit, AfterViewInit
-{
-  @Input() label!: string; // <-- passing custom value from parent component
+export class InputComponent implements AfterViewInit, OnInit {
+  ngControl = injectNgControl();
 
-  @Input() formControlName!: string; // <-- passing value from parent component
+  isRequired = false;
+
+  @Input() label!: string;
+
+  @Input() id!: string;
 
   @Input() placeholder?: string;
 
@@ -67,19 +62,14 @@ export class InputComponent
 
   @ViewChild('input', { static: true, read: ElementRef }) input: ElementRef;
 
-  readonly formControl: FormControl = new FormControl(); // <-- local FormControl
-
-  private readonly destroyRef: DestroyRef = inject(DestroyRef); // <-- used for unsubscribing
-
-  onChange: (value: string) => void = noop;
-  onTouched: () => void = noop;
-
   constructor(private renderer: Renderer2, private wrapper: ElementRef) {}
 
   ngOnInit(): void {
-    this.formControl.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((text: string): void => this.onChange(text)); // <-- passing value to the parent form
+    if (this.ngControl) {
+      this.isRequired = this.ngControl?.control?.hasValidator(
+        Validators.required
+      );
+    }
   }
 
   ngAfterViewInit(): void {
@@ -92,9 +82,8 @@ export class InputComponent
       this.renderer.selectRootElement(inputEl).focus();
     }
 
-    // set attributes
+    // set attributes on inner input element
     [
-      'id',
       'min',
       'max',
       'minlength',
@@ -110,24 +99,19 @@ export class InputComponent
     });
 
     // remove attributes from wrapper
-    this.renderer.removeAttribute(wrapperEl, 'minlength');
-    this.renderer.removeAttribute(wrapperEl, 'maxlength');
-    this.renderer.removeAttribute(wrapperEl, 'id');
-  }
-
-  registerOnChange(fn: () => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  writeValue(text: string): void {
-    this.formControl.patchValue(text, { emitEvent: false });
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    isDisabled ? this.formControl.disable() : this.formControl.enable();
+    [
+      'id',
+      'min',
+      'max',
+      'minlength',
+      'maxlength',
+      'placeholder',
+      'required',
+      'type',
+      'label',
+      'placeholder',
+    ].forEach((attrName) => {
+      this.renderer.removeAttribute(wrapperEl, attrName);
+    });
   }
 }
