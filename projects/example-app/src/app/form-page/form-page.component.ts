@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
+  NgForm,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -32,26 +34,36 @@ import {
   styleUrl: './form-page.component.scss',
 })
 export class FormPageComponent {
-  name = 'Angular';
-  form!: FormGroup;
-  result: string = '';
+  // reactive form - input
+  inputForm = new FormGroup({
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl(''),
+    password: new FormControl('', Validators.required),
+    age: new FormControl(18),
+  });
+
+  // template driven form - input
+  firstName: any = 'Mui';
+  lastName: any = 'Css';
+
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: [''],
-      password: ['', Validators.required],
-      age: [18],
-    });
+  // reset input form
+  submitInputReactiveForm(): void {
+    console.log(
+      'reset reactive inputForm: ',
+      `${this.inputForm.value} | ${this.inputForm.status}`
+    );
+    this.inputForm.reset();
   }
 
-  getResult() {
-    const formValue = this.form.value;
-
-    this.result = `I, ${formValue.firstName} ${formValue.lastName},
-     agree to terms and conditions: ${formValue.termsAndConditions}
-    }`;
+  // reset template driven form
+  submitInputTemplateForm(f: NgForm): void {
+    console.log(
+      'reset template driven input form: ',
+      `${f.value} | ${f.valid}`
+    );
+    f.reset();
   }
 }

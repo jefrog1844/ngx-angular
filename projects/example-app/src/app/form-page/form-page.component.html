@@ -3,8 +3,7 @@
   <h2>Input - reactive</h2>
   <lib-panel>
     <div>
-      {{ result }} {{ form.value | json }}
-      <form [formGroup]="form" (ngSubmit)="getResult()">
+      <form [formGroup]="inputForm" (ngSubmit)="submitInputReactiveForm()">
         <div>
           <lib-input
             id="firstName"
@@ -53,11 +52,51 @@
           ></lib-input>
         </div>
         <br />
-        <lib-button [disabled]="!form.valid || !form.dirty">Submit</lib-button>
+        <lib-button [disabled]="!inputForm.valid || !inputForm.dirty"
+          >Submit</lib-button
+        >
       </form>
-      <p>Form Value: {{ form.value | json }}</p>
-      <p>Form Status: {{ form.status }}</p>
-      <p>Form Valid: {{ form.valid }}</p>
+      <p>Form Value: {{ inputForm.value | json }}</p>
+      <p>Form Status: {{ inputForm.status }}</p>
+      <p>Form Valid: {{ inputForm.valid }}</p>
     </div>
+  </lib-panel>
+
+  <h2>Input - template driven</h2>
+  <lib-panel>
+    <form
+      class="mui-form"
+      #f="ngForm"
+      (ngSubmit)="submitInputTemplateForm(f)"
+      ngNativeValidate
+    >
+      <legend>Inputs</legend>
+      <lib-input
+        label="First Name (required)"
+        [(ngModel)]="firstName"
+        name="first"
+        placeholder="enter first name here"
+        required="true"
+      ></lib-input>
+      <lib-input
+        label="Last Name (required)"
+        [(ngModel)]="lastName"
+        name="last"
+        placeholder="enter last name here"
+        required="true"
+      >
+      </lib-input>
+      <lib-button
+        variant="raised"
+        size="small"
+        color="primary"
+        [disabled]="!f.valid"
+        >Submit</lib-button
+      >
+    </form>
+    <p>First name value: {{ firstName }}</p>
+    <p>Last name value: {{ lastName }}</p>
+    <p>Form value: {{ f.value | json }}</p>
+    <p>Form valid: {{ f.valid }}</p>
   </lib-panel>
 </lib-container>
