@@ -34,7 +34,7 @@ import {
   styleUrl: './form-page.component.scss',
 })
 export class FormPageComponent {
-  // reactive form - input
+  // Input - reactive form
   inputForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -43,9 +43,28 @@ export class FormPageComponent {
     age: new FormControl(18),
   });
 
-  // template driven form - input
-  firstName: any = 'Mui';
-  lastName: any = 'Css';
+  // Input - template driven form
+  firstName = 'Mui';
+  lastName = 'Css';
+
+  // Input - standalone
+  inputControl: FormControl = new FormControl('');
+  inputValue = 'some input value for ngModel';
+
+  // checkbox - reactive
+  checkForm = new FormGroup({
+    checkOne: new FormControl(false, Validators.requiredTrue),
+    checkTwo: new FormControl({ value: false, disabled: true }),
+    checkThree: new FormControl(true),
+  });
+
+  // checkbox - template driven
+  checkValueA: boolean = false;
+  checkValueB: boolean;
+
+  // checkbox - standalone
+  standaloneCheck: FormControl = new FormControl(false);
+  standaloneCheckValue: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -66,8 +85,4 @@ export class FormPageComponent {
     );
     f.reset();
   }
-
-  // Input - standalone
-  inputControl: FormControl = new FormControl('');
-  inputValue: any = 'some input value for ngModel';
 }

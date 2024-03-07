@@ -65,13 +65,14 @@
   <h2>Input - template driven</h2>
   <lib-panel>
     <form
-      class="mui-form"
+      class="lib-form"
       #f="ngForm"
       (ngSubmit)="submitInputTemplateForm(f)"
       ngNativeValidate
     >
       <legend>Inputs</legend>
       <lib-input
+        id="firstNameTemplate"
         label="First Name (required)"
         [(ngModel)]="firstName"
         name="first"
@@ -79,6 +80,7 @@
         required="true"
       ></lib-input>
       <lib-input
+        id="lastNameTemplate"
         label="Last Name (required)"
         [(ngModel)]="lastName"
         name="last"
@@ -103,11 +105,13 @@
   <h2>Input - standalone (formControl & ngModel)</h2>
   <lib-panel>
     <lib-input
+      id="inputControl"
       label="[formControl]"
       [formControl]="inputControl"
       placeholder="control value"
     ></lib-input>
     <lib-input
+      id="inputValue"
       label="[(ngModel)]"
       [(ngModel)]="inputValue"
       name="inputValue"
@@ -116,5 +120,74 @@
     </lib-input>
     <p>[formControl]: {{ inputControl.value | json }}</p>
     <p>[(ngModel)]: {{ inputValue }}</p>
+  </lib-panel>
+
+  <h2>Checkboxes - Reactive</h2>
+  <lib-panel>
+    <form class="lib-form" [formGroup]="checkForm">
+      <lib-checkbox
+        id="checkOne"
+        label="Option 1 (required)"
+        value="one"
+        formControlName="checkOne"
+      ></lib-checkbox>
+      <lib-checkbox
+        id="checkTwo"
+        label="Option 2 (disabled)"
+        value="two"
+        formControlName="checkTwo"
+      ></lib-checkbox>
+      <lib-checkbox
+        id="checkThree"
+        label="Option 3"
+        value="three"
+        formControlName="checkThree"
+      ></lib-checkbox>
+    </form>
+    <p>Form Value: {{ checkForm.value | json }}</p>
+    <p>Form Status: {{ checkForm.status }}</p>
+  </lib-panel>
+
+  <h2>Checkbox - Template driven</h2>
+  <lib-panel>
+    <form class="lib-form" #c="ngForm">
+      <lib-checkbox
+        id="checkValueA"
+        label="Option 1"
+        value="one"
+        [(ngModel)]="checkValueA"
+        name="checkValueA"
+      ></lib-checkbox>
+      <lib-checkbox
+        id="checkValueB"
+        label="Option 2"
+        value="two"
+        [(ngModel)]="checkValueB"
+        name="checkValueB"
+        required="true"
+      >
+      </lib-checkbox>
+    </form>
+    <p>Form Value: {{ c.value | json }}</p>
+    <p>Form Status: {{ c.valid }}</p>
+  </lib-panel>
+
+  <h2>Checkbox - Standalone (formControl & ngModel)</h2>
+  <lib-panel>
+    <lib-checkbox
+      id="standaloneCheck"
+      label="Control"
+      value="control"
+      [formControl]="standaloneCheck"
+    ></lib-checkbox>
+    <lib-checkbox
+      id="standaloneCheckValue"
+      label="Model"
+      [(ngModel)]="standaloneCheckValue"
+      name="standaloneCheckValue"
+      value="model"
+    ></lib-checkbox>
+    <p>Form control Value: {{ standaloneCheck.value | json }}</p>
+    <p>ngModel Value: {{ standaloneCheckValue }}</p>
   </lib-panel>
 </lib-container>
