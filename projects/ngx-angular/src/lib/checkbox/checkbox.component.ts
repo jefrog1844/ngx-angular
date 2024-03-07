@@ -1,74 +1,84 @@
 import {
+  AfterViewInit,
   Component,
-  DestroyRef,
-  forwardRef,
-  inject,
+  ElementRef,
   Input,
   OnInit,
+  Renderer2,
+  ViewChild,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  ControlValueAccessor,
-  FormControl,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { noop } from 'rxjs';
+  ControlValueAccessorDirective,
+  injectNgControl,
+} from '../shared/control-value-accessor.directive';
 
 @Component({
   selector: 'lib-checkbox',
   standalone: true,
   imports: [ReactiveFormsModule],
+  hostDirectives: [ControlValueAccessorDirective],
   template: `
     <div class="mui-checkbox">
-      <label [for]="formControlName">
+      <label [for]="id">
         <input
+          #input
+          [id]="id"
           type="checkbox"
-          [formControl]="formControl"
-          [id]="formControlName"
+          [formControl]="ngControl.control"
         />
         {{ label }}
       </label>
     </div>
   `,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CheckboxComponent),
-      multi: true,
-    },
-  ],
+  styles: `
+  label {
+    &.required {
+      &:after {
+        content: "*";
+        color: red;
+      }
+    }
+  }
+  `,
 })
-export class CheckboxComponent implements ControlValueAccessor, OnInit {
+export class CheckboxComponent implements AfterViewInit, OnInit {
+  ngControl = injectNgControl();
+
+  isRequired = false;
+
+  @Input() id!: string;
+
   @Input() label!: string; // <-- passing custom value from parent component
-  @Input() formControlName!: string; // <-- passing value from parent component
 
-  readonly formControl: FormControl = new FormControl(); // <-- local FormControl
+  @ViewChild('input', { static: true, read: ElementRef }) input: ElementRef;
 
-  private readonly destroyRef: DestroyRef = inject(DestroyRef); // <-- used for unsubscribing
-
-  onChange: (value: boolean) => void = noop;
-  onTouched: () => void = noop;
+  constructor(private renderer: Renderer2, private wrapper: ElementRef) {}
 
   ngOnInit(): void {
-    this.formControl.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((checked: boolean): void => this.onChange(checked)); // <-- passing value to the parent form
+    if (this.ngControl) {
+      this.isRequired = this.ngControl?.control?.hasValidator(
+        Validators.required
+      );
+    }
   }
 
-  registerOnChange(fn: () => void): void {
-    this.onChange = fn;
-  }
+  ngAfterViewInit(): void {
+    // cache references to input and wrapper
+    const inputEl: HTMLInputElement = this.input.nativeElement;
+    const wrapperEl: HTMLElement = this.wrapper.nativeElement;
 
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
+    // set attributes on inner input element
+    ['required'].forEach((attrName) => {
+      const attrVal = this[attrName];
+      if (attrVal) {
+        this.renderer.setAttribute(inputEl, attrName, attrVal);
+      }
+    });
 
-  writeValue(checked: boolean): void {
-    this.formControl.patchValue(checked, { emitEvent: false });
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    isDisabled ? this.formControl.disable() : this.formControl.enable();
+    // remove attributes from wrapper
+    ['id', 'required', 'label'].forEach((attrName) => {
+      this.renderer.removeAttribute(wrapperEl, attrName);
+    });
   }
 }
