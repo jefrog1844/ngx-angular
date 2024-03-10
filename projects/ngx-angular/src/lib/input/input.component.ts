@@ -18,7 +18,7 @@ import { ControlValueAccessorDirective } from '../shared/control-value-accessor.
   hostDirectives: [ControlValueAccessorDirective],
   template: `
     <div class="mui-textfield">
-      <input [id]="id" #input [type]="type" [formControl]="ngControl.control" />
+      <input [id]="id" #input [type]="type" [formControl]="cvad.control" />
       <label [for]="id" [class.required]="isRequired">
         {{ label }}
       </label>
@@ -36,7 +36,7 @@ import { ControlValueAccessorDirective } from '../shared/control-value-accessor.
   `,
 })
 export class InputComponent implements AfterViewInit, OnInit {
-  ngControl = inject(ControlValueAccessorDirective);
+  cvad = inject(ControlValueAccessorDirective);
 
   isRequired = false;
 
@@ -63,10 +63,8 @@ export class InputComponent implements AfterViewInit, OnInit {
   constructor(private renderer: Renderer2, private wrapper: ElementRef) {}
 
   ngOnInit(): void {
-    if (this.ngControl) {
-      this.isRequired = this.ngControl?.control?.hasValidator(
-        Validators.required
-      );
+    if (this.cvad) {
+      this.isRequired = this.cvad?.control?.hasValidator(Validators.required);
     }
   }
 
