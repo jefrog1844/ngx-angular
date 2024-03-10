@@ -6,12 +6,10 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  ControlValueAccessorDirective,
-  injectNgControl,
-} from '../shared/control-value-accessor.directive';
+import { ControlValueAccessorDirective } from '../shared/control-value-accessor.directive';
 
 @Component({
   selector: 'lib-checkbox',
@@ -43,7 +41,7 @@ import {
   `,
 })
 export class CheckboxComponent implements AfterViewInit, OnInit {
-  ngControl = injectNgControl();
+  ngControl = inject(ControlValueAccessorDirective);
 
   isRequired = false;
 

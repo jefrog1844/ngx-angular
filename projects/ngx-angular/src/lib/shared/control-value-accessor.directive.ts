@@ -1,12 +1,16 @@
-import { Directive, inject } from '@angular/core';
+import { Directive, Injector, OnInit, inject } from '@angular/core';
 import {
+  ControlContainer,
   ControlValueAccessor,
+  FormControl,
   FormControlDirective,
   FormControlName,
+  FormGroup,
   NG_VALUE_ACCESSOR,
   NgControl,
   NgModel,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[libControlValueAccessor]',
@@ -19,24 +23,44 @@ import {
     },
   ],
 })
-export class ControlValueAccessorDirective implements ControlValueAccessor {
-  writeValue(obj: any): void {}
-  registerOnChange(fn: any): void {}
-  registerOnTouched(fn: any): void {}
-  setDisabledState?(isDisabled: boolean): void {}
-}
+export class ControlValueAccessorDirective
+  implements ControlValueAccessor, OnInit
+{
+  control: FormControl;
 
-export function injectNgControl() {
-  const ngControl = inject(NgControl, { self: true, optional: true });
+  private injector = inject(Injector);
+  private subscription?: Subscription;
 
-  if (!ngControl) throw new Error('...');
-  if (
-    ngControl instanceof FormControlDirective ||
-    ngControl instanceof FormControlName ||
-    ngControl instanceof NgModel
-  ) {
-    return ngControl;
-  } else {
-    throw new Error('...');
+  // https://dev.to/cyrillbrito/stop-re-implementing-controlvalueaccessor-5hmh
+  ngOnInit(): void {
+    const ngControl = this.injector.get(NgControl, null, {
+      self: true,
+      optional: true,
+    });
+
+    if (ngControl instanceof NgModel) {
+      this.control = ngControl.control;
+      this.subscription = ngControl.control.valueChanges.subscribe((value) => {
+        if (ngControl.model !== value || ngControl.viewModel !== value) {
+          ngControl.viewToModelUpdate(value);
+        }
+      });
+    } else if (ngControl instanceof FormControlDirective) {
+      this.control = ngControl.control;
+    } else if (ngControl instanceof FormControlName) {
+      const container = this.injector.get(ControlContainer)
+        .control as FormGroup;
+      this.control = container.controls[ngControl.name] as FormControl;
+    } else {
+      this.control = new FormControl();
+    }
+  }
+
+  writeValue() {}
+  registerOnChange() {}
+  registerOnTouched() {}
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }
