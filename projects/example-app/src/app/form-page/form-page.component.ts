@@ -15,6 +15,7 @@ import {
   ContainerComponent,
   InputComponent,
   PanelComponent,
+  RadioComponent,
 } from '../../../../ngx-angular/src/public-api';
 
 @Component({
@@ -29,6 +30,7 @@ import {
     FormsModule,
     CommonModule,
     ButtonComponent,
+    RadioComponent,
   ],
   templateUrl: './form-page.component.html',
   styleUrl: './form-page.component.scss',
@@ -65,6 +67,18 @@ export class FormPageComponent {
   // checkbox - standalone
   standaloneCheck: FormControl = new FormControl(false);
   standaloneCheckValue: boolean = false;
+
+  // radio - reactive
+  radioForm = new FormGroup({
+    groupA: new FormControl('', Validators.required),
+  });
+
+  // radio - template driven
+  radioValue: any = '';
+
+  // radio - standalone
+  standaloneRadio: FormControl = new FormControl('');
+  standaloneRadioValue: any = '';
 
   constructor(private fb: FormBuilder) {}
 

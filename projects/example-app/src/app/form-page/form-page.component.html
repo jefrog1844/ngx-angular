@@ -190,4 +190,96 @@
     <p>Form control Value: {{ standaloneCheck.value | json }}</p>
     <p>ngModel Value: {{ standaloneCheckValue }}</p>
   </lib-panel>
+
+  <h2>Radio buttons - Reactive</h2>
+  <lib-panel>
+    <form class="mui-form" [formGroup]="radioForm">
+      <lib-radio
+        formControlName="groupA"
+        label="Option 1"
+        value="a-1"
+      ></lib-radio>
+      <lib-radio
+        formControlName="groupA"
+        label="Option 2"
+        value="a-2"
+      ></lib-radio>
+      <lib-radio
+        formControlName="groupA"
+        label="Option 3"
+        value="a-3"
+      ></lib-radio>
+    </form>
+    <p>Form Value: {{ radioForm.value | json }}</p>
+    <p>Form Status: {{ radioForm.status }}</p>
+  </lib-panel>
+
+  <h2>Radio buttons - Template driven</h2>
+  <lib-panel>
+    <form class="mui-form" #r="ngForm">
+      <lib-radio
+        id="radio1"
+        [(ngModel)]="radioValue"
+        name="radioValue"
+        label="Radio 1"
+        value="radio-1"
+      ></lib-radio>
+      <lib-radio
+        id="radio2"
+        [(ngModel)]="radioValue"
+        name="radioValue"
+        label="Radio 2"
+        value="radio-2"
+      ></lib-radio>
+      <lib-radio
+        id="radio3"
+        [(ngModel)]="radioValue"
+        name="radioValue"
+        label="Radio 3"
+        value="radio-3"
+      ></lib-radio>
+    </form>
+    <p>Form Value: {{ r.value | json }}</p>
+    <p>Form Status: {{ r.valid }}</p>
+  </lib-panel>
+
+  <h2>Radio - Standalone (formControl & ngModel)</h2>
+  <lib-panel>
+    <lib-radio
+      label="Control 1"
+      value="fc-1"
+      [formControl]="standaloneRadio"
+    ></lib-radio>
+    <lib-radio
+      label="Control 2"
+      value="fc-2"
+      [formControl]="standaloneRadio"
+    ></lib-radio>
+    <lib-radio
+      label="Control 3"
+      value="fc-3"
+      [formControl]="standaloneRadio"
+    ></lib-radio>
+
+    <lib-radio
+      label="Model 1"
+      [(ngModel)]="standaloneRadioValue"
+      name="standaloneRadioValue"
+      value="ng-1"
+    ></lib-radio>
+    <lib-radio
+      label="Model 2"
+      [(ngModel)]="standaloneRadioValue"
+      name="standaloneRadioValue"
+      value="ng-2"
+    ></lib-radio>
+    <lib-radio
+      label="Model 3"
+      [(ngModel)]="standaloneRadioValue"
+      name="standaloneRadioValue"
+      value="ng-3"
+    ></lib-radio>
+    <p>Form control Value: {{ standaloneRadio.value | json }}</p>
+    <p>ngModel Value: {{ standaloneRadioValue }}</p>
+  </lib-panel>
 </lib-container>
