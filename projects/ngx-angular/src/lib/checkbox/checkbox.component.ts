@@ -19,12 +19,7 @@ import { ControlValueAccessorDirective } from '../shared/control-value-accessor.
   template: `
     <div class="mui-checkbox">
       <label [for]="id">
-        <input
-          #input
-          [id]="id"
-          type="checkbox"
-          [formControl]="ngControl.control"
-        />
+        <input #input [id]="id" type="checkbox" [formControl]="cvad.control" />
         {{ label }}
       </label>
     </div>
@@ -41,7 +36,7 @@ import { ControlValueAccessorDirective } from '../shared/control-value-accessor.
   `,
 })
 export class CheckboxComponent implements AfterViewInit, OnInit {
-  ngControl = inject(ControlValueAccessorDirective);
+  cvad = inject(ControlValueAccessorDirective);
 
   isRequired = false;
 
@@ -54,10 +49,8 @@ export class CheckboxComponent implements AfterViewInit, OnInit {
   constructor(private renderer: Renderer2, private wrapper: ElementRef) {}
 
   ngOnInit(): void {
-    if (this.ngControl) {
-      this.isRequired = this.ngControl?.control?.hasValidator(
-        Validators.required
-      );
+    if (this.cvad) {
+      this.isRequired = this.cvad?.control?.hasValidator(Validators.required);
     }
   }
 
