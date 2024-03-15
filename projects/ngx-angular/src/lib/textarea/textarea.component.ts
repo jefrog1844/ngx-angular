@@ -8,16 +8,12 @@ import {
   Self,
   ViewChild,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NgControl,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
   selector: 'lib-textarea',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule],
   template: `
     <div class="mui-textfield">
       <textarea
