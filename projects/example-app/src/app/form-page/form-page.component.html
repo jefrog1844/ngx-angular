@@ -50,6 +50,11 @@
             min="18"
             max="100"
           ></lib-input>
+          <lib-textarea
+            label="Notes"
+            formControlName="notes"
+            placeholder="textarea"
+          ></lib-textarea>
         </div>
         <br />
         <lib-button [disabled]="!inputForm.valid || !inputForm.dirty"
@@ -195,19 +200,34 @@
   <lib-panel>
     <form class="mui-form" [formGroup]="radioForm">
       <lib-radio
+        id="a-1"
         formControlName="groupA"
-        label="Option 1"
+        label="Option A1"
         value="a-1"
       ></lib-radio>
       <lib-radio
+        id="a-2"
         formControlName="groupA"
-        label="Option 2"
+        label="Option A2"
         value="a-2"
       ></lib-radio>
       <lib-radio
+        id="a-3"
         formControlName="groupA"
-        label="Option 3"
+        label="Option A3"
         value="a-3"
+      ></lib-radio>
+      <lib-radio
+        id="b-1"
+        formControlName="groupB"
+        label="Option B1"
+        value="b-1"
+      ></lib-radio>
+      <lib-radio
+        id="b-2"
+        formControlName="groupB"
+        label="Option B2"
+        value="b-2"
       ></lib-radio>
     </form>
     <p>Form Value: {{ radioForm.value | json }}</p>
@@ -246,34 +266,40 @@
   <h2>Radio - Standalone (formControl & ngModel)</h2>
   <lib-panel>
     <lib-radio
+      id="fc-1"
       label="Control 1"
       value="fc-1"
       [formControl]="standaloneRadio"
     ></lib-radio>
     <lib-radio
+      id="fc-2"
       label="Control 2"
       value="fc-2"
       [formControl]="standaloneRadio"
     ></lib-radio>
     <lib-radio
+      id="fc-3"
       label="Control 3"
       value="fc-3"
       [formControl]="standaloneRadio"
     ></lib-radio>
 
     <lib-radio
+      id="ng-1"
       label="Model 1"
       [(ngModel)]="standaloneRadioValue"
       name="standaloneRadioValue"
       value="ng-1"
     ></lib-radio>
     <lib-radio
+      id="ng-2"
       label="Model 2"
       [(ngModel)]="standaloneRadioValue"
       name="standaloneRadioValue"
       value="ng-2"
     ></lib-radio>
     <lib-radio
+      id="ng-3"
       label="Model 3"
       [(ngModel)]="standaloneRadioValue"
       name="standaloneRadioValue"
