@@ -16,6 +16,7 @@ import {
   InputComponent,
   PanelComponent,
   RadioComponent,
+  TextareaComponent,
 } from '../../../../ngx-angular/src/public-api';
 
 @Component({
@@ -25,6 +26,7 @@ import {
     ContainerComponent,
     PanelComponent,
     InputComponent,
+    TextareaComponent,
     CheckboxComponent,
     ReactiveFormsModule,
     FormsModule,
@@ -43,6 +45,7 @@ export class FormPageComponent {
     email: new FormControl(''),
     password: new FormControl('', Validators.required),
     age: new FormControl(18),
+    notes: new FormControl(''),
   });
 
   // Input - template driven form
@@ -71,6 +74,7 @@ export class FormPageComponent {
   // radio - reactive
   radioForm = new FormGroup({
     groupA: new FormControl('', Validators.required),
+    groupB: new FormControl('', Validators.required),
   });
 
   // radio - template driven
