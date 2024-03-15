@@ -15,4 +15,4 @@ export * from './lib/radio/public-api';
 export * from './lib/row/public-api';
 export * from './lib/select/public-api';
 export * from './lib/tabs/public-api';
-export * from './lib/textarea/public-api';
+export * from './lib/tabs/textarea/public-api';
