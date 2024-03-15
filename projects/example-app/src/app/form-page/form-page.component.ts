@@ -14,8 +14,10 @@ import {
   CheckboxComponent,
   ContainerComponent,
   InputComponent,
+  OptionComponent,
   PanelComponent,
   RadioComponent,
+  SelectComponent,
   TextareaComponent,
 } from '../../../../ngx-angular/src/public-api';
 
@@ -26,6 +28,8 @@ import {
     ContainerComponent,
     PanelComponent,
     InputComponent,
+    SelectComponent,
+    OptionComponent,
     TextareaComponent,
     CheckboxComponent,
     ReactiveFormsModule,
@@ -83,6 +87,24 @@ export class FormPageComponent {
   // radio - standalone
   standaloneRadio: FormControl = new FormControl('');
   standaloneRadioValue: any = '';
+
+  // select - reactive
+  selectForm = new FormGroup({
+    inputA: new FormControl('option-4'),
+    inputB: new FormControl('', Validators.required),
+    inputC: new FormControl({ value: '', disabled: true }),
+    inputD: new FormControl(''),
+  });
+
+  // select template driven
+  selectValueA: any = 'option-4';
+  selectValueB: any = '';
+  selectValueC: any = '';
+  selectValueD: any = '';
+
+  // select - standalone
+  standaloneSelect: FormControl = new FormControl('');
+  standaloneSelectValue: any = '';
 
   constructor(private fb: FormBuilder) {}
 

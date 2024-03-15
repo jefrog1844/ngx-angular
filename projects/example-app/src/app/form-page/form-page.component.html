@@ -308,4 +308,111 @@
     <p>Form control Value: {{ standaloneRadio.value | json }}</p>
     <p>ngModel Value: {{ standaloneRadioValue }}</p>
   </lib-panel>
+  <h2>Select - Reactive</h2>
+  <lib-panel>
+    <form class="mui-form" [formGroup]="selectForm">
+      <lib-select formControlName="inputA" label="Select 1">
+        <lib-option value="" label="enter value"></lib-option>
+        <lib-option value="option-1" label="Option 1"></lib-option>
+        <lib-option value="option-2" label="Option 2"></lib-option>
+        <lib-option value="option-3" label="Option 3"></lib-option>
+        <lib-option value="option-4" label="Option 4"></lib-option>
+      </lib-select>
+      <lib-select formControlName="inputB" label="Select 2 (required)">
+        <lib-option value="" label="enter value"></lib-option>
+        <lib-option value="option-1" label="Option 1"></lib-option>
+        <lib-option value="option-2" label="Option 2"></lib-option>
+        <lib-option value="option-3" label="Option 3"></lib-option>
+        <lib-option value="option-4" label="Option 4"></lib-option>
+      </lib-select>
+      <lib-select formControlName="inputC" label="Select 3 (disabled)">
+        <lib-option value="option-1" label="Option 1"></lib-option>
+        <lib-option value="option-2" label="Option 2"></lib-option>
+        <lib-option value="option-3" label="Option 3"></lib-option>
+        <lib-option value="option-4" label="Option 4"></lib-option>
+      </lib-select>
+      <lib-select formControlName="inputD" label="Select 4">
+        <lib-option value="option-1" label="Option 1"></lib-option>
+        <lib-option value="option-2" label="Option 2"></lib-option>
+        <lib-option value="option-3" label="Option 3"></lib-option>
+        <lib-option value="option-4" label="Option 4"></lib-option>
+      </lib-select>
+    </form>
+    <p>Form Value: {{ selectForm.value | json }}</p>
+    <p>Form Status: {{ selectForm.status }}</p>
+  </lib-panel>
+
+  <h2>Select - Template driven</h2>
+  <lib-panel>
+    <form class="mui-form" #s="ngForm">
+      <lib-select
+        [(ngModel)]="selectValueA"
+        name="selectValueA"
+        label="Select 1"
+      >
+        <lib-option value="" label="enter value"></lib-option>
+        <lib-option value="option-1" label="Option 1"></lib-option>
+        <lib-option value="option-2" label="Option 2"></lib-option>
+        <lib-option value="option-3" label="Option 3"></lib-option>
+        <lib-option value="option-4" label="Option 4"></lib-option>
+      </lib-select>
+      <lib-select
+        [(ngModel)]="selectValueB"
+        name="selectValueB"
+        required="true"
+        label="Select 2 (required)"
+      >
+        <lib-option value="" label="enter value"></lib-option>
+        <lib-option value="option-1" label="Option 1"></lib-option>
+        <lib-option value="option-2" label="Option 2"></lib-option>
+        <lib-option value="option-3" label="Option 3"></lib-option>
+        <lib-option value="option-4" label="Option 4"></lib-option>
+      </lib-select>
+      <lib-select
+        [(ngModel)]="selectValueC"
+        name="selectValueC"
+        label="Select 3 (disabled)"
+        disabled="true"
+      >
+        <lib-option value="option-1" label="Option 1"></lib-option>
+        <lib-option value="option-2" label="Option 2"></lib-option>
+        <lib-option value="option-3" label="Option 3"></lib-option>
+        <lib-option value="option-4" label="Option 4"></lib-option>
+      </lib-select>
+      <lib-select
+        [(ngModel)]="selectValueD"
+        name="selectValueD"
+        label="Select 4"
+      >
+        <lib-option value="option-1" label="Option 1"></lib-option>
+        <lib-option value="option-2" label="Option 2"></lib-option>
+        <lib-option value="option-3" label="Option 3"></lib-option>
+        <lib-option value="option-4" label="Option 4"></lib-option>
+      </lib-select>
+    </form>
+    <p>Form Value: {{ s.value | json }}</p>
+    <p>Form Status: {{ s.valid }}</p>
+  </lib-panel>
+
+  <h2>Select - Standalone (formControl & ngModel)</h2>
+  <lib-panel>
+    <lib-select [formControl]="standaloneSelect" label="Form Control">
+      <lib-option value="option-1" label="Option 1"></lib-option>
+      <lib-option value="option-2" label="Option 2"></lib-option>
+      <lib-option value="option-3" label="Option 3"></lib-option>
+      <lib-option value="option-4" label="Option 4"></lib-option>
+    </lib-select>
+    <lib-select
+      [(ngModel)]="standaloneSelectValue"
+      name="standaloneSelectValue"
+      label="NgModel"
+    >
+      <lib-option value="option-1" label="Option 1"></lib-option>
+      <lib-option value="option-2" label="Option 2"></lib-option>
+      <lib-option value="option-3" label="Option 3"></lib-option>
+      <lib-option value="option-4" label="Option 4"></lib-option>
+    </lib-select>
+    <p>Form control Value: {{ standaloneSelect.value | json }}</p>
+    <p>ngModel Value: {{ standaloneSelectValue }}</p>
+  </lib-panel>
 </lib-container>
