@@ -7,47 +7,38 @@ import {
   Renderer2,
   Self,
   ViewChild,
-  forwardRef,
 } from '@angular/core';
 import {
   ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
   NgControl,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 @Component({
   selector: 'lib-textarea',
   standalone: true,
-  imports: [CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   template: `
     <div class="mui-textfield">
       <textarea
-        id="textarea"
         #textarea
         [ngClass]="{
-          'mui--is-dirty': ngControl?.dirty,
-          'mui--is-empty': ngControl?.value,
-          'mui--is-invalid': ngControl?.invalid,
-          'mui--is-not-empty': ngControl?.value,
-          'mui--is-pristine': ngControl?.pristine,
-          'mui--is-touched': ngControl?.touched,
-          'mui--is-untouched': ngControl?.untouched
+          'mui--is-dirty': ngControl.dirty,
+          'mui--is-empty': !ngControl.value,
+          'mui--is-invalid': ngControl.invalid,
+          'mui--is-not-empty': ngControl.value,
+          'mui--is-pristine': ngControl.pristine,
+          'mui--is-touched': ngControl.touched,
+          'mui--is-untouched': ngControl.untouched
         }"
         (input)="onChange($event.target.value)"
         (blur)="onTouched()"
         [disabled]="disabled"
       >
       </textarea>
-      <label for="textarea" tabindex="-1">{{ label }}</label>
+      <label tabindex="-1">{{ label }}</label>
     </div>
   `,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TextareaComponent),
-      multi: true,
-    },
-  ],
 })
 export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
   @Input() autofocus?: boolean = false;
@@ -56,7 +47,7 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
 
   @Input() placeholder?: string;
 
-  @Input() id?: string;
+  @Input() id?: any;
 
   @Input() label?: string;
 
@@ -67,16 +58,14 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
   @Input() rows?: string = '2';
 
   @ViewChild('textarea', { static: true, read: ElementRef })
-  textarea!: ElementRef;
+  textarea: ElementRef;
 
   constructor(
     @Self() public ngControl: NgControl,
     private renderer: Renderer2,
     private wrapper: ElementRef
   ) {
-    if (ngControl) {
-      ngControl.valueAccessor = this;
-    }
+    ngControl.valueAccessor = this;
   }
 
   ngAfterViewInit(): void {
@@ -93,7 +82,7 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
      * name - gets set on NgControl through inputs for NgModel and formControlName directives only.
      * Does not work for standalone FormControl directive
      */
-    if (this.ngControl?.name) {
+    if (this.ngControl.name) {
       this.renderer.setAttribute(
         inputEl,
         'name',
@@ -107,26 +96,14 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
     }
 
     // set attributes
-    if (this.id) {
-      this.renderer.setAttribute(inputEl, 'id', this.id);
-    }
-
-    if (this.maxlength) {
-      this.renderer.setAttribute(inputEl, 'maxLength', this.maxlength);
-    }
-
-    if (this.placeholder) {
-      this.renderer.setAttribute(inputEl, 'placeholder', this.placeholder);
-    }
-
-    // TODO - verify this works as intended
-    if (this.required) {
-      this.renderer.setProperty(inputEl, 'required', this.required);
-    }
-
-    if (this.rows) {
-      this.renderer.setAttribute(inputEl, 'rows', this.rows);
-    }
+    ['id', 'maxlength', 'placeholder', 'required', 'rows'].forEach(
+      (attrName) => {
+        const attrVal = this[attrName];
+        if (attrVal) {
+          this.renderer.setAttribute(inputEl, attrName, attrVal);
+        }
+      }
+    );
 
     // remove attributes from wrapper
     this.renderer.removeAttribute(wrapperEl, 'maxlength');
@@ -144,7 +121,6 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
    * be available before onChanges is called.
    * @param value - value from <mui-textarea>
    */
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   writeValue(value: any): void {
     // update input field with value received from outer component
     this.renderer.setProperty(this.textarea.nativeElement, 'value', value);
@@ -154,17 +130,12 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
    * Code below this point is all boilerplate - DO NOT CHANGE
    */
   onTouched = () => {};
-
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  /* eslint-disable  @typescript-eslint/no-unused-vars */
   onChange = (_: any) => {};
 
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }

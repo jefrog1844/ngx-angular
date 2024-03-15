@@ -91,20 +91,20 @@ export class RadioGroupService {
       >
     </div>
   `,
-  styles: `
-  label {
-    &.required {
-      &:after {
-        content: "*";
-        color: red;
-      }
-    }
-  }
-  `,
 })
 export class RadioComponent
   implements AfterViewInit, ControlValueAccessor, OnInit, OnDestroy
 {
+  constructor(
+    @Self() public ngControl: NgControl,
+    private renderer: Renderer2,
+    private wrapper: ElementRef,
+    private service: RadioGroupService
+  ) {
+    // set control value accessor
+    ngControl.valueAccessor = this;
+  }
+
   @Input() disabled?: boolean = false;
 
   @Input() id?: any;
@@ -119,16 +119,6 @@ export class RadioComponent
     new EventEmitter<RadioComponent>();
 
   @ViewChild('input', { static: true, read: ElementRef }) input: ElementRef;
-
-  constructor(
-    @Self() public ngControl: NgControl,
-    private renderer: Renderer2,
-    private wrapper: ElementRef,
-    private service: RadioGroupService
-  ) {
-    // set control value accessor
-    ngControl.valueAccessor = this;
-  }
 
   ngAfterViewInit(): void {
     // cache references to input and wrapper
