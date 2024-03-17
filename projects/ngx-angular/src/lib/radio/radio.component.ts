@@ -77,8 +77,9 @@ export class RadioGroupService {
   imports: [ReactiveFormsModule],
   template: `
     <div class="mui-radio">
-      <label>
+      <label [for]="id">
         <input
+          [id]="id"
           type="radio"
           #input
           value="{{ value }}"
