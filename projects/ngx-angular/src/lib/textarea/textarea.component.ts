@@ -17,6 +17,7 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
   template: `
     <div class="mui-textfield">
       <textarea
+        [id]="id"
         #textarea
         [ngClass]="{
           'mui--is-dirty': ngControl.dirty,
@@ -32,7 +33,7 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
         [disabled]="disabled"
       >
       </textarea>
-      <label tabindex="-1">{{ label }}</label>
+      <label [for]="id" tabindex="-1">{{ label }}</label>
     </div>
   `,
 })
