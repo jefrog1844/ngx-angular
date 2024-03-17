@@ -312,27 +312,35 @@
   <h2>Select - Reactive</h2>
   <lib-panel>
     <form class="mui-form" [formGroup]="selectForm">
-      <lib-select formControlName="inputA" label="Select 1">
+      <lib-select id="inputA" formControlName="inputA" label="Select 1">
         <lib-option value="" label="enter value"></lib-option>
         <lib-option value="option-1" label="Option 1"></lib-option>
         <lib-option value="option-2" label="Option 2"></lib-option>
         <lib-option value="option-3" label="Option 3"></lib-option>
         <lib-option value="option-4" label="Option 4"></lib-option>
       </lib-select>
-      <lib-select formControlName="inputB" label="Select 2 (required)">
+      <lib-select
+        id="inputB"
+        formControlName="inputB"
+        label="Select 2 (required)"
+      >
         <lib-option value="" label="enter value"></lib-option>
         <lib-option value="option-1" label="Option 1"></lib-option>
         <lib-option value="option-2" label="Option 2"></lib-option>
         <lib-option value="option-3" label="Option 3"></lib-option>
         <lib-option value="option-4" label="Option 4"></lib-option>
       </lib-select>
-      <lib-select formControlName="inputC" label="Select 3 (disabled)">
+      <lib-select
+        id="inputC"
+        formControlName="inputC"
+        label="Select 3 (disabled)"
+      >
         <lib-option value="option-1" label="Option 1"></lib-option>
         <lib-option value="option-2" label="Option 2"></lib-option>
         <lib-option value="option-3" label="Option 3"></lib-option>
         <lib-option value="option-4" label="Option 4"></lib-option>
       </lib-select>
-      <lib-select formControlName="inputD" label="Select 4">
+      <lib-select id="inputD" formControlName="inputD" label="Select 4">
         <lib-option value="option-1" label="Option 1"></lib-option>
         <lib-option value="option-2" label="Option 2"></lib-option>
         <lib-option value="option-3" label="Option 3"></lib-option>
@@ -347,6 +355,7 @@
   <lib-panel>
     <form class="mui-form" #s="ngForm">
       <lib-select
+        id="selectValueA"
         [(ngModel)]="selectValueA"
         name="selectValueA"
         label="Select 1"
@@ -358,6 +367,7 @@
         <lib-option value="option-4" label="Option 4"></lib-option>
       </lib-select>
       <lib-select
+        id="selectValueB"
         [(ngModel)]="selectValueB"
         name="selectValueB"
         required="true"
@@ -370,6 +380,7 @@
         <lib-option value="option-4" label="Option 4"></lib-option>
       </lib-select>
       <lib-select
+        id="selectValueC"
         [(ngModel)]="selectValueC"
         name="selectValueC"
         label="Select 3 (disabled)"
@@ -381,6 +392,7 @@
         <lib-option value="option-4" label="Option 4"></lib-option>
       </lib-select>
       <lib-select
+        id="selectValueD"
         [(ngModel)]="selectValueD"
         name="selectValueD"
         label="Select 4"
@@ -397,13 +409,18 @@
 
   <h2>Select - Standalone (formControl & ngModel)</h2>
   <lib-panel>
-    <lib-select [formControl]="standaloneSelect" label="Form Control">
+    <lib-select
+      id="standaloneSelect"
+      [formControl]="standaloneSelect"
+      label="Form Control"
+    >
       <lib-option value="option-1" label="Option 1"></lib-option>
       <lib-option value="option-2" label="Option 2"></lib-option>
       <lib-option value="option-3" label="Option 3"></lib-option>
       <lib-option value="option-4" label="Option 4"></lib-option>
     </lib-select>
     <lib-select
+      id="standaloneSelectValue"
       [(ngModel)]="standaloneSelectValue"
       name="standaloneSelectValue"
       label="NgModel"

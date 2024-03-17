@@ -20,6 +20,7 @@ import { OptionComponent } from './option.component';
   template: `
     <div class="mui-select">
       <select
+        id="id"
         #select
         (change)="onChange($event.target.value)"
         (blur)="onTouched()"
@@ -33,7 +34,7 @@ import { OptionComponent } from './option.component';
           ></ng-container>
         </ng-container>
       </select>
-      <label tabindex="-1">{{ label }}</label>
+      <label [for]="id" tabindex="-1">{{ label }}</label>
     </div>
   `,
 })
