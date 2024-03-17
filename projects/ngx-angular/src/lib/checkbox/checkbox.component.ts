@@ -19,8 +19,9 @@ import {
   imports: [ReactiveFormsModule],
   template: `
     <div class="mui-checkbox">
-      <label>
+      <label [for]="id">
         <input
+          [id]="id"
           type="checkbox"
           #input
           value="{{ value }}"
