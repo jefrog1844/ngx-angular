@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormControl, NgControl } from '@angular/forms';
 import { CheckboxComponent } from './checkbox.component';
 
 describe('CheckboxComponent', () => {
@@ -7,11 +8,22 @@ describe('CheckboxComponent', () => {
   let fixture: ComponentFixture<CheckboxComponent>;
 
   beforeEach(async () => {
+    const NG_CONTROL_PROVIDER = {
+      provide: NgControl,
+      useClass: class extends NgControl {
+        control = new FormControl();
+        viewToModelUpdate(): void {}
+      },
+    };
+
     await TestBed.configureTestingModule({
-      imports: [CheckboxComponent]
+      imports: [CheckboxComponent],
     })
-    .compileComponents();
-    
+      .overrideComponent(CheckboxComponent, {
+        add: { providers: [NG_CONTROL_PROVIDER] },
+      })
+      .compileComponents();
+
     fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
