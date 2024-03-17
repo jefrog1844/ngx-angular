@@ -32,7 +32,8 @@ export class DividerComponent implements AfterViewInit, OnInit {
   @ViewChild('span', { static: false })
   span!: ElementRef<HTMLSpanElement>;
 
-  @Input() location?: 'top' | 'bottom' | 'left' | 'right' = 'top';
+  @Input() location?: 'default' | 'top' | 'bottom' | 'left' | 'right' =
+    'default';
 
   private el!: HTMLElement;
 
@@ -47,7 +48,7 @@ export class DividerComponent implements AfterViewInit, OnInit {
       : (this.el = this.span.nativeElement);
 
     // set class
-    if (this.location) {
+    if (this?.location !== 'default') {
       this.renderer.removeClass(this.el, 'mui-divider');
       this.renderer.addClass(this.el, 'mui--divider-' + this.location);
     }
