@@ -88,7 +88,6 @@ describe('ColComponent', () => {
   it('xs-offset col should have class mui-col-xs-offset-5', () => {
     component.xsOffset = 5;
     component.ngAfterViewInit();
-    console.log(`component: ${component.xsOffset}`);
     fixture.detectChanges();
     expect(col).toHaveClass('mui-col-xs-offset-5');
   });
