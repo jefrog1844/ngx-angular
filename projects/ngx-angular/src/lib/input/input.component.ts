@@ -21,6 +21,7 @@ import {
   template: `
     <div class="mui-textfield">
       <input
+        [id]="id"
         #input
         [ngClass]="{
           'mui--is-dirty': ngControl.dirty,
@@ -35,7 +36,7 @@ import {
         (blur)="onTouched()"
         [disabled]="disabled"
       />
-      <label tabindex="-1">{{ label }}</label>
+      <label [for]="id" tabindex="-1">{{ label }}</label>
     </div>
   `,
 })
