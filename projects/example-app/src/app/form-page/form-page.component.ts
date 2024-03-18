@@ -9,6 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { FloatLabelDirective } from '../../../../ngx-angular/src/lib/shared/float-label-directive';
 import {
   ButtonComponent,
   CheckboxComponent,
@@ -37,6 +38,7 @@ import {
     CommonModule,
     ButtonComponent,
     RadioComponent,
+    FloatLabelDirective,
   ],
   templateUrl: './form-page.component.html',
   styleUrl: './form-page.component.scss',
@@ -55,6 +57,11 @@ export class FormPageComponent {
   // Input - template driven form
   firstName = 'Mui';
   lastName = 'Css';
+
+  // input - floating
+  floatingForm = new FormGroup({
+    floatingText: new FormControl(''),
+  });
 
   // Input - standalone
   inputControl: FormControl = new FormControl('');

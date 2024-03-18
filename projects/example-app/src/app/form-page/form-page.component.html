@@ -128,6 +128,17 @@
     <p>[(ngModel)]: {{ inputValue }}</p>
   </lib-panel>
 
+  <h2>Input - floating label</h2>
+  <lib-panel>
+    <form class="mui-form" [formGroup]="floatingForm">
+      <lib-input
+        floatLabel
+        label="Floating text field"
+        formControlName="floatingText"
+      ></lib-input>
+    </form>
+  </lib-panel>
+
   <h2>Checkboxes - Reactive</h2>
   <lib-panel>
     <form class="lib-form" [formGroup]="checkForm">
