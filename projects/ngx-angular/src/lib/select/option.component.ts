@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -9,6 +10,7 @@ import {
 @Component({
   selector: 'lib-option',
   standalone: true,
+  imports: [CommonModule],
   template: `
     <ng-template #templateref>
       <option
