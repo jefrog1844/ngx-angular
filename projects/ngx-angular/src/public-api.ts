@@ -14,5 +14,6 @@ export * from './lib/panel/public-api';
 export * from './lib/radio/public-api';
 export * from './lib/row/public-api';
 export * from './lib/select/public-api';
+export * from './lib/shared/public-api';
 export * from './lib/tabs/public-api';
 export * from './lib/textarea/public-api';
