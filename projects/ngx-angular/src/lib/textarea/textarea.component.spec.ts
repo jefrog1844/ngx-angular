@@ -1,11 +1,48 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormControl, NgControl } from '@angular/forms';
+import { Component } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  NgControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { TextareaComponent } from './textarea.component';
+
+@Component({
+  selector: 'textarea-component-test',
+  standalone: true,
+  imports: [TextareaComponent, ReactiveFormsModule, FormsModule],
+  template: `
+    <lib-form [formGroup]="basicForm" (ngSubmit)="onSubmitReactive()">
+      <lib-textarea
+        label="Notes"
+        formControlName="notes"
+        hint="textarea"
+      ></lib-textarea>
+      <lib-textarea
+        label="Description"
+        formControlName="description"
+        hint="textarea"
+        rows="5"
+      ></lib-textarea>
+    </lib-form>
+  `,
+})
+class TestTextareaComponent {
+  basicForm = new FormGroup({
+    notes: new FormControl('This is default text', Validators.required),
+    description: new FormControl(''),
+  });
+}
 
 describe('TextareaComponent', () => {
   let component: TextareaComponent;
-  let fixture: ComponentFixture<TextareaComponent>;
+  let fixture: ComponentFixture<TestTextareaComponent>;
+  let wrapperEl: HTMLDivElement;
+  let inputs: HTMLTextAreaElement[];
 
   beforeEach(async () => {
     const NG_CONTROL_PROVIDER = {
@@ -24,12 +61,51 @@ describe('TextareaComponent', () => {
       })
       .compileComponents();
 
-    fixture = TestBed.createComponent(TextareaComponent);
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(TestTextareaComponent);
+    component = fixture.debugElement.children[0].componentInstance;
     fixture.detectChanges();
+    inputs = fixture.nativeElement.querySelectorAll('textarea');
+    wrapperEl = fixture.nativeElement.querySelector('div');
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('wrapper div should have class mui-textfield', () => {
+    expect(wrapperEl).toHaveClass('mui-textfield');
+  });
+
+  it('form should have 2 textarea fields', () => {
+    expect(inputs.length).toBe(2);
+    expect(inputs[0]).toHaveClass('mui--is-not-empty');
+    expect(inputs[0]).toHaveClass('mui--is-pristine');
+    expect(inputs[0]).toHaveClass('mui--is-untouched');
+    expect(inputs[0].rows).toEqual(2);
+    expect(inputs[1]).toHaveClass('mui--is-empty');
+    expect(inputs[1].rows).toEqual(5);
+  });
+
+  it('notes should default to This is default text', () => {
+    expect(inputs[0].value).toEqual('This is default text');
+  });
+
+  it('form should be valid', () => {
+    const form = fixture.componentInstance.basicForm;
+    expect(form.valid).toBeTruthy();
+  });
+
+  it('textarea description should read THE DESCRIPTION WAS MODIFIED after update', () => {
+    const form = fixture.componentInstance.basicForm;
+    inputs[1].value = 'THE DESCRIPTION WAS MODIFIED';
+    inputs[1].dispatchEvent(new Event('input'));
+    inputs[1].dispatchEvent(new Event('blur'));
+    fixture.detectChanges();
+    expect(form.controls.description.value).toEqual(
+      'THE DESCRIPTION WAS MODIFIED'
+    );
+    expect(inputs[1]).toHaveClass('mui--is-dirty');
+    expect(inputs[1]).toHaveClass('mui--is-not-empty');
+    expect(inputs[1]).toHaveClass('mui--is-touched');
   });
 });
