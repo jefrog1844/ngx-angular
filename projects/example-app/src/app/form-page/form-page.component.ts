@@ -63,6 +63,11 @@ export class FormPageComponent {
     floatingText: new FormControl(''),
   });
 
+  // input - inline
+  inlineForm = new FormGroup({
+    inlineText: new FormControl(''),
+  });
+
   // Input - standalone
   inputControl: FormControl = new FormControl('');
   inputValue = 'some input value for ngModel';
@@ -131,5 +136,17 @@ export class FormPageComponent {
       `${f.value} | ${f.valid}`
     );
     f.reset();
+  }
+
+  // reset inline form
+  resetInlineForm(): void {
+    console.log('reset inline form: ', this.inlineForm.value);
+    this.inlineForm.reset();
+  }
+
+  // reset inline form
+  submitInlineForm(): void {
+    console.log('submit inline form: ', this.inlineForm.value);
+    this.inlineForm.reset();
   }
 }

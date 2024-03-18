@@ -139,6 +139,30 @@
     </form>
   </lib-panel>
 
+  <h2>Input - inline form</h2>
+  <lib-panel>
+    <form
+      class="mui-form--inline"
+      [formGroup]="inlineForm"
+      (ngSubmit)="submitInlineForm()"
+    >
+      <lib-input
+        id="inlineField"
+        formControlName="inlineText"
+        label="Inline Form"
+        floatLabel
+      ></lib-input>
+      <lib-button variant="raised" color="primary">Submit</lib-button>
+      <lib-button
+        type="button"
+        variant="flat"
+        color="primary"
+        (click)="resetInlineForm()"
+        >Cancel</lib-button
+      >
+    </form>
+  </lib-panel>
+
   <h2>Checkboxes - Reactive</h2>
   <lib-panel>
     <form class="lib-form" [formGroup]="checkForm">
