@@ -18,6 +18,9 @@ import { By } from '@angular/platform-browser';
 import { CheckboxComponent } from './checkbox.component';
 
 @Component({
+  selector: 'single-checkbox-text',
+  standalone: true,
+  imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form" [formGroup]="singleCheckForm">
       <lib-checkbox
@@ -36,6 +39,9 @@ class SingleCheckboxComponent {
 }
 
 @Component({
+  selector: 'multi-checkbox-text',
+  standalone: true,
+  imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form" [formGroup]="multiCheckForm">
       <lib-checkbox
@@ -61,6 +67,9 @@ class MultipleCheckboxComponent {
 }
 
 @Component({
+  selector: 'ngmodel-checkbox-text',
+  standalone: true,
+  imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form" #c="ngForm">
       <lib-checkbox
@@ -78,6 +87,9 @@ class NgModelCheckboxComponent {
 }
 
 @Component({
+  selector: 'formcontrol-checkbox-text',
+  standalone: true,
+  imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
   template: `
     <lib-checkbox
       id="formControl-check"
@@ -106,12 +118,6 @@ describe('CheckboxComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
-      declarations: [
-        SingleCheckboxComponent,
-        MultipleCheckboxComponent,
-        NgModelCheckboxComponent,
-        FormControlCheckboxComponent,
-      ],
     })
       .overrideComponent(CheckboxComponent, {
         add: { providers: [NG_CONTROL_PROVIDER] },
