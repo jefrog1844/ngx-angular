@@ -20,7 +20,9 @@ import { TabComponent } from './tab.component';
       [ngClass]="{ 'mui-tabs__bar--justified': justified }"
     >
       <li *ngFor="let tab of tabs" [ngClass]="{ 'mui--is-active': tab.active }">
-        <a (click)="onClick(tab)">{{ tab.label }}</a>
+        <a (click)="onClick(tab)" (keypress)="onClick(tab)" tabindex="0">{{
+          tab.label
+        }}</a>
       </li>
     </ul>
     <ng-content></ng-content>
