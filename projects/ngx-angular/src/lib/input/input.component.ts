@@ -47,7 +47,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor {
 
   @Input() placeholder?: string;
 
-  @Input() id?: any;
+  @Input() id?: string;
 
   @Input() label?: string;
 
@@ -123,7 +123,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor {
    * be available before onChanges is called.
    * @param value - value from <mui-input>
    */
-  writeValue(value: any): void {
+  writeValue(value: string | number): void {
     // update input field with value received from outer component
     this.renderer.setProperty(this.input.nativeElement, 'value', value);
   }
@@ -131,14 +131,14 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor {
   /**
    * Code below this point is all boilerplate - DO NOT CHANGE
    */
-  onTouched = () => {};
-  onChange = (_: any) => {};
+  onTouched: () => void;
+  onChange: (value: string | number) => void;
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
