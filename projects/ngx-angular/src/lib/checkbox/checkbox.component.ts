@@ -38,7 +38,7 @@ import {
 export class CheckboxComponent implements AfterViewInit, ControlValueAccessor {
   @Input() disabled?: boolean = false;
 
-  @Input() id?: any;
+  @Input() id?: string;
 
   @Input() label?: string;
 
@@ -103,7 +103,7 @@ export class CheckboxComponent implements AfterViewInit, ControlValueAccessor {
    * be available before onChanges is called.
    * @param value - value from <mui-checkbox>
    */
-  writeValue(value: any): void {
+  writeValue(value: boolean): void {
     this.renderer.setProperty(this.input.nativeElement, 'checked', value);
   }
 
@@ -111,13 +111,13 @@ export class CheckboxComponent implements AfterViewInit, ControlValueAccessor {
    * Code below this point is all boilerplate - DO NOT CHANGE
    */
   onTouched = () => {};
-  onChange = (_: any) => {};
+  onChange: (value: boolean) => void;
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
