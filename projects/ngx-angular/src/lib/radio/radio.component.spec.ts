@@ -290,23 +290,6 @@ describe('RadioComponent - ngModel', () => {
     }
   });
 
-  // it('should check the corresponding radio button on form control value change', () => {
-  //   expect(component.modelValue).toBeFalsy();
-  //   for (const radio of radioInstances) {
-  //     expect(radio.input.nativeElement.checked).toBeFalsy();
-  //   }
-
-  //   component.modelValue = 'option-2';
-  //   for (const radio of radioInstances) {
-  //     console.log(
-  //       `${component.modelValue} | ${radio.value} | ${radio.input.nativeElement.checked}`
-  //     );
-  //     expect(radio.input.nativeElement.checked).toBe(
-  //       component.modelValue === radio.value
-  //     );
-  //   }
-  // });
-
   it('should update the ngModel value when selecting a radio button', async () => {
     innerRadios[1].nativeElement.dispatchEvent(new Event('change'));
     fixture.detectChanges();
