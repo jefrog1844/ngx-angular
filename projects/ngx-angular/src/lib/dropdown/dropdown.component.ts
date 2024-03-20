@@ -7,7 +7,6 @@ import {
   HostListener,
   Input,
   OnDestroy,
-  OnInit,
   QueryList,
   Renderer2,
   ViewChild,
@@ -49,7 +48,7 @@ import { DropdownItemComponent } from './dropdown-item.component';
     </ng-template>
   `,
 })
-export class DropdownComponent implements OnDestroy, AfterViewInit, OnInit {
+export class DropdownComponent implements OnDestroy, AfterViewInit {
   @Input() noCaret?: boolean = false;
 
   @Input() variant?: string;
@@ -85,8 +84,6 @@ export class DropdownComponent implements OnDestroy, AfterViewInit, OnInit {
   private unsubscribe: Subscription = new Subscription();
 
   constructor(private renderer: Renderer2) {}
-
-  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     // cache references
