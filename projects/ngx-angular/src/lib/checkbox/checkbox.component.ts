@@ -14,7 +14,7 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'lib-checkbox',
+  selector: 'mui-checkbox',
   standalone: true,
   imports: [ReactiveFormsModule],
   template: `

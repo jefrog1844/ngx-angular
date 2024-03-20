@@ -5,15 +5,15 @@ import { TabComponent } from './tab.component';
 import { TabsComponent } from './tabs.component';
 
 @Component({
-  selector: 'tabs-component-test',
+  selector: 'mui-tabs-component-test',
   standalone: true,
   imports: [TabsComponent, TabComponent],
   template: `
-    <lib-tabs>
-      <lib-tab tabId="1" label="Tab 1" [active]="true">Pane-1</lib-tab>
-      <lib-tab tabId="2" label="Tab 2">Pane-2</lib-tab>
-      <lib-tab tabId="3" label="Tab 3">Pane-3</lib-tab>
-    </lib-tabs>
+    <mui-tabs>
+      <mui-tab tabId="1" label="Tab 1" [active]="true">Pane-1</mui-tab>
+      <mui-tab tabId="2" label="Tab 2">Pane-2</mui-tab>
+      <mui-tab tabId="3" label="Tab 3">Pane-3</mui-tab>
+    </mui-tabs>
   `,
 })
 class TestTabsComponent {}

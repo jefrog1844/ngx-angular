@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'lib-caret',
+  selector: 'mui-caret',
   standalone: true,
   imports: [],
   template: `<span class="mui-caret" #caret></span>`,

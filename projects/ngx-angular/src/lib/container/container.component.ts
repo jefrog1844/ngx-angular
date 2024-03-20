@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'lib-container',
+  selector: 'mui-container',
   standalone: true,
   imports: [],
   template: `<div #container class="mui-container">

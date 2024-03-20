@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'lib-tab',
+  selector: 'mui-tab',
   standalone: true,
   imports: [CommonModule],
   template: `

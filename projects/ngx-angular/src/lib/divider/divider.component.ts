@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'lib-divider',
+  selector: 'mui-divider',
   standalone: true,
   imports: [CommonModule],
   template: `

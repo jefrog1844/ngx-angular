@@ -18,7 +18,7 @@ import {
 import { InputComponent } from './input.component';
 
 @Component({
-  selector: 'reactive-input-test',
+  selector: 'mui-reactive-input-test',
   standalone: true,
   imports: [InputComponent, ReactiveFormsModule, FormsModule],
   template: `
@@ -27,7 +27,7 @@ import { InputComponent } from './input.component';
       [formGroup]="basicForm"
       (ngSubmit)="onSubmitReactive()"
     >
-      <lib-input
+      <mui-input
         id="first"
         muiFloatingLabel
         label="First Name"
@@ -35,30 +35,30 @@ import { InputComponent } from './input.component';
         minlength="3"
         maxlength="10"
         autofocus="true"
-      ></lib-input>
-      <lib-input
+      ></mui-input>
+      <mui-input
         label="Last Name"
         formControlName="last"
         hint="enter last name"
-      ></lib-input>
-      <lib-input
+      ></mui-input>
+      <mui-input
         type="email"
         label="Email"
         formControlName="email"
         hint="enter email"
-      ></lib-input>
-      <lib-input
+      ></mui-input>
+      <mui-input
         type="number"
         label="Zip Code"
         formControlName="zip"
         hint="enter zip code"
-      ></lib-input>
-      <lib-input
+      ></mui-input>
+      <mui-input
         type="password"
         label="Password"
         formControlName="pwd"
         hint="enter password"
-      ></lib-input>
+      ></mui-input>
     </form>
   `,
 })
@@ -73,32 +73,32 @@ class TestReactiveInputComponent {
 }
 
 @Component({
-  selector: 'template-input-test',
+  selector: 'mui-template-input-test',
   standalone: true,
   imports: [InputComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form" #f="ngForm" (submit)="onSubmit(f)">
-      <lib-input
+      <mui-input
         label="First Name"
         [(ngModel)]="first"
         name="first"
         hint="enter first name here"
         required="true"
-      ></lib-input>
-      <lib-input
+      ></mui-input>
+      <mui-input
         label="Last Name"
         [(ngModel)]="last"
         name="last"
         hint="enter last name here"
         required="true"
-      ></lib-input>
-      <lib-input
+      ></mui-input>
+      <mui-input
         type="number"
         label="Zip code"
         [(ngModel)]="zip"
         name="zip"
         hint="enter zip code here"
-      ></lib-input>
+      ></mui-input>
     </form>
   `,
 })

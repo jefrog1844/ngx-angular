@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'lib-col',
+  selector: 'mui-col',
   standalone: true,
   imports: [],
   template: `<div #col><ng-content></ng-content></div>`,

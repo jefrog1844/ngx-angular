@@ -1,7 +1,7 @@
 import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'lib-dropdown-item',
+  selector: 'mui-dropdown-item',
   standalone: true,
   imports: [],
   template: `

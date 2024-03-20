@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive, ElementRef, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[floatLabel]',
+  selector: '[muiFloatLabel]',
   standalone: true,
 })
 export class FloatLabelDirective implements AfterViewInit {

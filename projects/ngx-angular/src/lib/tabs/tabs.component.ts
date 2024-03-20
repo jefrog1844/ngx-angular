@@ -11,7 +11,7 @@ import {
 import { TabComponent } from './tab.component';
 
 @Component({
-  selector: 'lib-tabs',
+  selector: 'mui-tabs',
   standalone: true,
   imports: [CommonModule, TabComponent],
   template: `

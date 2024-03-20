@@ -18,17 +18,17 @@ import { By } from '@angular/platform-browser';
 import { CheckboxComponent } from './checkbox.component';
 
 @Component({
-  selector: 'single-checkbox-text',
+  selector: 'mui-single-checkbox-text',
   standalone: true,
   imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form" [formGroup]="singleCheckForm">
-      <lib-checkbox
+      <mui-checkbox
         id="single-check"
         label="Single checkbox"
         value="single"
         formControlName="singleCheck"
-      ></lib-checkbox>
+      ></mui-checkbox>
     </form>
   `,
 })
@@ -39,23 +39,23 @@ class SingleCheckboxComponent {
 }
 
 @Component({
-  selector: 'multi-checkbox-text',
+  selector: 'mui-multi-checkbox-text',
   standalone: true,
   imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form" [formGroup]="multiCheckForm">
-      <lib-checkbox
+      <mui-checkbox
         id="multi-1"
         label="Option 1"
         value="one"
         formControlName="oneCheck"
-      ></lib-checkbox>
-      <lib-checkbox
+      ></mui-checkbox>
+      <mui-checkbox
         id="multi-2"
         label="Option 2"
         value="two"
         formControlName="twoCheck"
-      ></lib-checkbox>
+      ></mui-checkbox>
     </form>
   `,
 })
@@ -67,18 +67,18 @@ class MultipleCheckboxComponent {
 }
 
 @Component({
-  selector: 'ngmodel-checkbox-text',
+  selector: 'mui-ngmodel-checkbox-text',
   standalone: true,
   imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form" #c="ngForm">
-      <lib-checkbox
+      <mui-checkbox
         id="ngModel-check"
         label="NgModel Check"
         value="one"
         [(ngModel)]="checkValue"
         name="checkValue"
-      ></lib-checkbox>
+      ></mui-checkbox>
     </form>
   `,
 })
@@ -87,16 +87,16 @@ class NgModelCheckboxComponent {
 }
 
 @Component({
-  selector: 'formcontrol-checkbox-text',
+  selector: 'mui-formcontrol-checkbox-text',
   standalone: true,
   imports: [CheckboxComponent, ReactiveFormsModule, FormsModule],
   template: `
-    <lib-checkbox
+    <mui-checkbox
       id="formControl-check"
       label="Standalone checkbox"
       value="alone"
       [formControl]="formControlCheck"
-    ></lib-checkbox>
+    ></mui-checkbox>
   `,
 })
 class FormControlCheckboxComponent {

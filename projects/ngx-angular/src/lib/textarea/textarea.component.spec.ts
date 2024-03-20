@@ -12,23 +12,23 @@ import {
 import { TextareaComponent } from './textarea.component';
 
 @Component({
-  selector: 'textarea-component-test',
+  selector: 'mui-textarea-component-test',
   standalone: true,
   imports: [TextareaComponent, ReactiveFormsModule, FormsModule],
   template: `
-    <lib-form [formGroup]="basicForm" (ngSubmit)="onSubmitReactive()">
-      <lib-textarea
+    <mui-form [formGroup]="basicForm" (ngSubmit)="onSubmitReactive()">
+      <mui-textarea
         label="Notes"
         formControlName="notes"
         hint="textarea"
-      ></lib-textarea>
-      <lib-textarea
+      ></mui-textarea>
+      <mui-textarea
         label="Description"
         formControlName="description"
         hint="textarea"
         rows="5"
-      ></lib-textarea>
-    </lib-form>
+      ></mui-textarea>
+    </mui-form>
   `,
 })
 class TestTextareaComponent {

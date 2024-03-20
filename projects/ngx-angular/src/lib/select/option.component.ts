@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'lib-option',
+  selector: 'mui-option',
   standalone: true,
   imports: [CommonModule],
   template: `

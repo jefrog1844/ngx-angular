@@ -8,7 +8,7 @@ import {
 import { offset } from 'muicss/lib/js/lib/jqlite';
 
 @Directive({
-  selector: '[libRipple]',
+  selector: '[muiRipple]',
   standalone: true,
 })
 export class RippleDirective implements AfterViewInit {

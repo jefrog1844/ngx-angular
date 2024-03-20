@@ -72,7 +72,7 @@ export class RadioGroupService {
 }
 
 @Component({
-  selector: 'lib-radio',
+  selector: 'mui-radio',
   standalone: true,
   imports: [ReactiveFormsModule],
   template: `

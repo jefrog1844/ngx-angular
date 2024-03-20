@@ -18,7 +18,7 @@ import { CaretComponent } from '../caret/caret.component';
 import { DropdownItemComponent } from './dropdown-item.component';
 
 @Component({
-  selector: 'lib-dropdown',
+  selector: 'mui-dropdown',
   standalone: true,
   imports: [
     ButtonComponent,
@@ -28,12 +28,12 @@ import { DropdownItemComponent } from './dropdown-item.component';
   ],
   template: `
     <div class="mui-dropdown" #wrapper>
-      <lib-button (click)="onClick($event)" [disabled]="disabled">
+      <mui-button (click)="onClick($event)" [disabled]="disabled">
         <ng-container *ngIf="placement === 'left'; else default">
-          <lib-caret *ngIf="!noCaret" direction="{{ placement }}"></lib-caret
+          <mui-caret *ngIf="!noCaret" direction="{{ placement }}"></mui-caret
           >&nbsp;{{ label }}
         </ng-container>
-      </lib-button>
+      </mui-button>
       <ul class="mui-dropdown__menu" #menu>
         <ng-container *ngFor="let item of items">
           <ng-container [ngTemplateOutlet]="item.itemTemplate"></ng-container>
@@ -42,10 +42,10 @@ import { DropdownItemComponent } from './dropdown-item.component';
     </div>
 
     <ng-template #default>
-      {{ label }}&nbsp;<lib-caret
+      {{ label }}&nbsp;<mui-caret
         *ngIf="!noCaret"
         direction="{{ placement }}"
-      ></lib-caret>
+      ></mui-caret>
     </ng-template>
   `,
 })

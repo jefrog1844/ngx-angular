@@ -21,7 +21,7 @@ import { OptionComponent } from './option.component';
 import { SelectComponent } from './select.component';
 
 @Component({
-  selector: 'select-formcontrol-test',
+  selector: 'mui-select-formcontrol-test',
   standalone: true,
   imports: [
     SelectComponent,
@@ -31,16 +31,16 @@ import { SelectComponent } from './select.component';
     CommonModule,
   ],
   template: `
-    <lib-select [formControl]="formControlSelect">
-      <lib-option value="option-1" label="Option 1"></lib-option>
-      <lib-option value="option-2" label="Option 2"></lib-option>
-      <lib-option value="option-3" label="Option 3"></lib-option>
-      <lib-option
+    <mui-select [formControl]="formControlSelect">
+      <mui-option value="option-1" label="Option 1"></mui-option>
+      <mui-option value="option-2" label="Option 2"></mui-option>
+      <mui-option value="option-3" label="Option 3"></mui-option>
+      <mui-option
         value="option-4"
         label="Option 4"
         disabled="true"
-      ></lib-option>
-    </lib-select>
+      ></mui-option>
+    </mui-select>
   `,
 })
 class SelectWithFormControlComponent {
@@ -48,7 +48,7 @@ class SelectWithFormControlComponent {
 }
 
 @Component({
-  selector: 'select-formcontrolname-test',
+  selector: 'mui-select-formcontrolname-test',
   standalone: true,
   imports: [
     SelectComponent,
@@ -59,16 +59,16 @@ class SelectWithFormControlComponent {
   ],
   template: `
     <form class="mui-form" [formGroup]="selectForm">
-      <lib-select formControlName="select">
-        <lib-option value="option-1" label="Option 1"></lib-option>
-        <lib-option value="option-2" label="Option 2"></lib-option>
-        <lib-option value="option-3" label="Option 3"></lib-option>
-        <lib-option
+      <mui-select formControlName="select">
+        <mui-option value="option-1" label="Option 1"></mui-option>
+        <mui-option value="option-2" label="Option 2"></mui-option>
+        <mui-option value="option-3" label="Option 3"></mui-option>
+        <mui-option
           value="option-4"
           label="Option 4"
           disabled="true"
-        ></lib-option>
-      </lib-select>
+        ></mui-option>
+      </mui-select>
     </form>
   `,
 })
@@ -79,7 +79,7 @@ class SelectWithFormControlNameComponent {
 }
 
 @Component({
-  selector: 'select-ngmodel-test',
+  selector: 'mui-select-ngmodel-test',
   standalone: true,
   imports: [
     SelectComponent,
@@ -90,16 +90,16 @@ class SelectWithFormControlNameComponent {
   ],
   template: `
     <form class="mui-form" #s="ngForm">
-      <lib-select [(ngModel)]="selectValue" name="selectValue" required="true">
-        <lib-option value="option-1" label="Option 1"></lib-option>
-        <lib-option value="option-2" label="Option 2"></lib-option>
-        <lib-option value="option-3" label="Option 3"></lib-option>
-        <lib-option
+      <mui-select [(ngModel)]="selectValue" name="selectValue" required="true">
+        <mui-option value="option-1" label="Option 1"></mui-option>
+        <mui-option value="option-2" label="Option 2"></mui-option>
+        <mui-option value="option-3" label="Option 3"></mui-option>
+        <mui-option
           value="option-4"
           label="Option 4"
           disabled="true"
-        ></lib-option>
-      </lib-select>
+        ></mui-option>
+      </mui-select>
     </form>
   `,
 })

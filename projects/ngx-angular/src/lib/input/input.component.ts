@@ -15,7 +15,7 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'lib-input',
+  selector: 'mui-input',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   template: `

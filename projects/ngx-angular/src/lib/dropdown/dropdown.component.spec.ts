@@ -7,11 +7,11 @@ import { DropdownItemComponent } from './dropdown-item.component';
 import { DropdownComponent } from './dropdown.component';
 
 @Component({
-  selector: 'dropdown-component-test',
+  selector: 'mui-dropdown-component-test',
   standalone: true,
   imports: [DropdownComponent, DropdownItemComponent],
   template: `
-    <lib-dropdown
+    <mui-dropdown
       label="dropup (right aligned)"
       color="primary"
       variant="flat"
@@ -19,9 +19,9 @@ import { DropdownComponent } from './dropdown.component';
       placement="up"
       alignment="right"
     >
-      <lib-dropdown-item link="appbar">Appbar</lib-dropdown-item>
-      <lib-dropdown-item link="divider">Dividers</lib-dropdown-item>
-    </lib-dropdown>
+      <mui-dropdown-item link="appbar">Appbar</mui-dropdown-item>
+      <mui-dropdown-item link="divider">Dividers</mui-dropdown-item>
+    </mui-dropdown>
   `,
 })
 class TestDropownComponent {}

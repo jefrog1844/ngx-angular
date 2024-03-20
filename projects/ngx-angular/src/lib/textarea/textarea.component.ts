@@ -11,7 +11,7 @@ import {
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Component({
-  selector: 'lib-textarea',
+  selector: 'mui-textarea',
   standalone: true,
   imports: [CommonModule],
   template: `

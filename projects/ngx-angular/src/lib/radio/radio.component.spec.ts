@@ -13,32 +13,32 @@ import { By } from '@angular/platform-browser';
 import { RadioComponent } from './radio.component';
 
 @Component({
-  selector: 'ngmodel-radio-test',
+  selector: 'mui-ngmodel-radio-test',
   standalone: true,
   imports: [RadioComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form--inline" #r="ngForm">
-      <lib-radio
+      <mui-radio
         [(ngModel)]="modelValue"
         name="modelValue"
         [ngModelOptions]="{ standalone: true }"
         label="Option 1"
         value="option-1"
-      ></lib-radio>
-      <lib-radio
+      ></mui-radio>
+      <mui-radio
         [(ngModel)]="modelValue"
         name="modelValue"
         [ngModelOptions]="{ standalone: true }"
         label="Option 2"
         value="option-2"
-      ></lib-radio>
-      <lib-radio
+      ></mui-radio>
+      <mui-radio
         [(ngModel)]="modelValue"
         name="modelValue"
         [ngModelOptions]="{ standalone: true }"
         label="Option 3"
         value="option-3"
-      ></lib-radio>
+      ></mui-radio>
     </form>
   `,
 })
@@ -47,29 +47,29 @@ class RadiosWithNgModelComponent {
 }
 
 @Component({
-  selector: 'formcontrol-radio-test',
+  selector: 'mui-formcontrol-radio-test',
   standalone: true,
   imports: [RadioComponent, ReactiveFormsModule, FormsModule],
   template: `
     <form class="mui-form" [formGroup]="radioForm">
-      <lib-radio
+      <mui-radio
         formControlName="groupA"
         id="1"
         label="Option 1"
         value="a-1"
-      ></lib-radio>
-      <lib-radio
+      ></mui-radio>
+      <mui-radio
         formControlName="groupA"
         id="2"
         label="Option 2"
         value="a-2"
-      ></lib-radio>
-      <lib-radio
+      ></mui-radio>
+      <mui-radio
         formControlName="groupA"
         id="3"
         label="Option 3"
         value="a-3"
-      ></lib-radio>
+      ></mui-radio>
     </form>
   `,
 })

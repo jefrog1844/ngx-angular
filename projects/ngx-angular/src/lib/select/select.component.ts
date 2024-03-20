@@ -14,7 +14,7 @@ import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { OptionComponent } from './option.component';
 
 @Component({
-  selector: 'lib-select',
+  selector: 'mui-select',
   standalone: true,
   imports: [CommonModule],
   template: `

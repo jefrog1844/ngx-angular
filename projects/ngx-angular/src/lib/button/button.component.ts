@@ -9,14 +9,14 @@ import {
 import { RippleDirective } from './ripple.directive';
 
 @Component({
-  selector: 'lib-button',
+  selector: 'mui-button',
   standalone: true,
   imports: [RippleDirective],
   template: `
     <button
       type="{{ type }}"
       class="mui-btn"
-      libRipple
+      muiRipple
       #button
       [disabled]="disabled"
     >
