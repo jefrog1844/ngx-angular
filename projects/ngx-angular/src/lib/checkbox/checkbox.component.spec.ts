@@ -11,7 +11,6 @@ import {
   FormGroup,
   FormsModule,
   NgControl,
-  NgModel,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -83,7 +82,7 @@ class MultipleCheckboxComponent {
   `,
 })
 class NgModelCheckboxComponent {
-  checkValue: any = false;
+  checkValue: boolean = false;
 }
 
 @Component({
@@ -137,7 +136,6 @@ describe('CheckboxComponent', () => {
     let testComponent: SingleCheckboxComponent;
     let checkboxDebugElement: DebugElement;
     let checkboxNativeElement: HTMLElement;
-    let checkboxInstance: CheckboxComponent;
     let checkBoxInputElement: HTMLInputElement;
 
     beforeEach(async () => {
@@ -149,8 +147,6 @@ describe('CheckboxComponent', () => {
       checkboxDebugElement = fixture.debugElement.query(
         By.directive(CheckboxComponent)
       );
-      checkboxInstance =
-        checkboxDebugElement.injector.get<CheckboxComponent>(CheckboxComponent);
       checkboxNativeElement = checkboxDebugElement.nativeElement;
       checkBoxInputElement = checkboxDebugElement.query(
         By.css('input')
@@ -229,7 +225,6 @@ describe('CheckboxComponent', () => {
     let checkboxNativeElement: HTMLElement;
     let checkboxInstance: CheckboxComponent;
     let checkBoxInputElement: HTMLInputElement;
-    let ngModel: NgModel;
 
     beforeEach(async () => {
       fixture = TestBed.createComponent(NgModelCheckboxComponent);
@@ -246,7 +241,6 @@ describe('CheckboxComponent', () => {
       checkBoxInputElement = checkboxDebugElement.query(
         By.css('input')
       ).nativeElement;
-      ngModel = checkboxDebugElement.injector.get<NgModel>(NgModel);
     });
 
     it('should add and remove the checked state', fakeAsync(() => {
@@ -303,7 +297,6 @@ describe('CheckboxComponent', () => {
     let testComponent: FormControlCheckboxComponent;
     let checkboxDebugElement: DebugElement;
     let checkboxNativeElement: HTMLElement;
-    let checkboxInstance: CheckboxComponent;
     let checkBoxInputElement: HTMLInputElement;
 
     beforeEach(async () => {
@@ -315,8 +308,6 @@ describe('CheckboxComponent', () => {
       checkboxDebugElement = fixture.debugElement.query(
         By.directive(CheckboxComponent)
       );
-      checkboxInstance =
-        checkboxDebugElement.injector.get<CheckboxComponent>(CheckboxComponent);
       checkboxNativeElement = checkboxDebugElement.nativeElement;
       checkBoxInputElement = checkboxDebugElement.query(
         By.css('input')
