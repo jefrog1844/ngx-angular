@@ -38,7 +38,7 @@ export class OptionComponent {
   @Input() value: string;
 
   @ViewChild('templateref', { static: true })
-  public optionTemplate: TemplateRef<any>;
+  public optionTemplate: TemplateRef<HTMLOptionElement>;
 
   @ViewChild('option', { static: true, read: ElementRef }) option: ElementRef;
 
