@@ -108,7 +108,7 @@ export class RadioComponent
 
   @Input() disabled?: boolean = false;
 
-  @Input() id?: any;
+  @Input() id?: string;
 
   @Input() label?: string;
 
@@ -161,7 +161,7 @@ export class RadioComponent
     this.service.add(this);
   }
 
-  onClick(event: any): void {
+  onClick(event: Event): void {
     event.stopPropagation();
   }
 
@@ -189,7 +189,7 @@ export class RadioComponent
    * be available before onChanges is called.
    * @param value - value from <mui-radio>
    */
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     // since radios can be grouped, compare incoming value against this radio's value
     const state = value === this.value;
 
@@ -200,14 +200,14 @@ export class RadioComponent
   /**
    * Code below this point is all boilerplate - DO NOT CHANGE
    */
-  onTouched = () => {};
-  onChange = (_: any) => {};
+  onTouched: () => void;
+  onChange: (value: string) => void;
 
-  registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
