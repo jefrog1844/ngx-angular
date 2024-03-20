@@ -103,8 +103,8 @@ class TestReactiveInputComponent {
   `,
 })
 class TestTemplateDrivenInputComponent {
-  first: any = '';
-  last: any = '';
+  first: string = '';
+  last: string = '';
   zip: number = 68845;
 }
 
