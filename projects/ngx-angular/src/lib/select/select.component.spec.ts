@@ -104,18 +104,15 @@ class SelectWithFormControlNameComponent {
   `,
 })
 class SelectWithNgModelComponent {
-  selectValue: any = '';
+  selectValue: string = '';
 }
 
 describe('SelectComponent - form control', () => {
   let component: SelectWithFormControlComponent;
   let fixture: ComponentFixture<SelectWithFormControlComponent>;
   let selectDebugElement: DebugElement;
-  let selectNativeElement: HTMLElement;
   let selectInstance: SelectComponent;
   let selectInputElement: HTMLSelectElement;
-  let optionDebugElements: DebugElement[];
-  let optionInstances: OptionComponent[];
   let innerOptions: DebugElement[];
 
   beforeEach(async () => {
@@ -145,17 +142,11 @@ describe('SelectComponent - form control', () => {
     );
     selectInstance =
       selectDebugElement.injector.get<SelectComponent>(SelectComponent);
-    selectNativeElement = selectDebugElement.nativeElement;
+
     selectInputElement = selectDebugElement.query(
       By.css('select')
     ).nativeElement;
 
-    optionDebugElements = fixture.debugElement.queryAll(
-      By.directive(OptionComponent)
-    );
-    optionInstances = optionDebugElements.map(
-      (debugEl) => debugEl.componentInstance
-    );
     innerOptions = fixture.debugElement.queryAll(By.css('option'));
   });
 
@@ -218,11 +209,8 @@ describe('SelectComponent - form control name', () => {
   let component: SelectWithFormControlNameComponent;
   let fixture: ComponentFixture<SelectWithFormControlNameComponent>;
   let selectDebugElement: DebugElement;
-  let selectNativeElement: HTMLElement;
   let selectInstance: SelectComponent;
   let selectInputElement: HTMLSelectElement;
-  let optionDebugElements: DebugElement[];
-  let optionInstances: OptionComponent[];
   let innerOptions: DebugElement[];
 
   beforeEach(async () => {
@@ -252,17 +240,11 @@ describe('SelectComponent - form control name', () => {
     );
     selectInstance =
       selectDebugElement.injector.get<SelectComponent>(SelectComponent);
-    selectNativeElement = selectDebugElement.nativeElement;
+
     selectInputElement = selectDebugElement.query(
       By.css('select')
     ).nativeElement;
 
-    optionDebugElements = fixture.debugElement.queryAll(
-      By.directive(OptionComponent)
-    );
-    optionInstances = optionDebugElements.map(
-      (debugEl) => debugEl.componentInstance
-    );
     innerOptions = fixture.debugElement.queryAll(By.css('option'));
   });
 
@@ -337,11 +319,11 @@ describe('SelectComponent - ngModel', () => {
   let component: SelectWithNgModelComponent;
   let fixture: ComponentFixture<SelectWithNgModelComponent>;
   let selectDebugElement: DebugElement;
-  let selectNativeElement: HTMLElement;
+  // let selectNativeElement: HTMLElement;
   let selectInstance: SelectComponent;
   let selectInputElement: HTMLSelectElement;
-  let optionDebugElements: DebugElement[];
-  let optionInstances: OptionComponent[];
+  // let optionDebugElements: DebugElement[];
+  // let optionInstances: OptionComponent[];
   let innerOptions: DebugElement[];
   let form: NgForm;
 
@@ -372,17 +354,11 @@ describe('SelectComponent - ngModel', () => {
     );
     selectInstance =
       selectDebugElement.injector.get<SelectComponent>(SelectComponent);
-    selectNativeElement = selectDebugElement.nativeElement;
+    // selectNativeElement = selectDebugElement.nativeElement;
     selectInputElement = selectDebugElement.query(
       By.css('select')
     ).nativeElement;
 
-    optionDebugElements = fixture.debugElement.queryAll(
-      By.directive(OptionComponent)
-    );
-    optionInstances = optionDebugElements.map(
-      (debugEl) => debugEl.componentInstance
-    );
     innerOptions = fixture.debugElement.queryAll(By.css('option'));
 
     const formElement = fixture.debugElement.children[0];
