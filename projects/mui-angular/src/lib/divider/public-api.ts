@@ -1,4 +1,4 @@
 /*
- * Public API Surface of @muicss/ngx-angular/divider
+ * Public API Surface of @muicss/mui-angular/divider
  */
 export * from './divider.component';

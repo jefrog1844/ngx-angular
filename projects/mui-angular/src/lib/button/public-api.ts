@@ -1,5 +1,5 @@
 /*
- * Public API Surface of @muicss/ngx-angular/button
+ * Public API Surface of @muicss/mui-angular/button
  */
 export * from './button.component';
 export * from './ripple.directive';

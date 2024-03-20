@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ngx-angular
+ * Public API Surface of mui-angular
  */
 export * from './lib/appbar/public-api';
 export * from './lib/button/public-api';

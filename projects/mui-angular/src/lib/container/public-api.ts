@@ -1,4 +1,4 @@
 /*
- * Public API Surface of @muicss/ngx-angular/container
+ * Public API Surface of @muicss/mui-angular/container
  */
 export * from './container.component';

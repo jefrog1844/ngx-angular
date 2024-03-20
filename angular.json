@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-angular": {
+    "mui-angular": {
       "projectType": "library",
-      "root": "projects/ngx-angular",
-      "sourceRoot": "projects/ngx-angular/src",
+      "root": "projects/mui-angular",
+      "sourceRoot": "projects/mui-angular/src",
       "prefix": "mui",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/ngx-angular/ng-package.json"
+            "project": "projects/mui-angular/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-angular/tsconfig.lib.prod.json"
+              "tsConfig": "projects/mui-angular/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ngx-angular/tsconfig.lib.json"
+              "tsConfig": "projects/mui-angular/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,7 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/ngx-angular/tsconfig.spec.json",
+            "tsConfig": "projects/mui-angular/tsconfig.spec.json",
             "polyfills": ["zone.js", "zone.js/testing"]
           }
         },
@@ -35,8 +35,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/ngx-angular/**/*.ts",
-              "projects/ngx-angular/**/*.html"
+              "projects/mui-angular/**/*.ts",
+              "projects/mui-angular/**/*.html"
             ]
           }
         }
@@ -138,9 +138,7 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ],
+    "schematicCollections": ["@angular-eslint/schematics"],
     "analytics": false
   }
 }

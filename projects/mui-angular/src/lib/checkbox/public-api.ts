@@ -1,4 +1,4 @@
 /*
- * Public API Surface of @muicss/ngx-angular/checkbox
+ * Public API Surface of @muicss/mui-angular/checkbox
  */
 export * from './checkbox.component';

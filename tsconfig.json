@@ -12,9 +12,7 @@
     "noImplicitAny": false,
     "skipLibCheck": true,
     "paths": {
-      "ngx-angular": [
-        "./dist/ngx-angular"
-      ]
+      "mui-angular": ["./dist/mui-angular"]
     },
     "esModuleInterop": true,
     "sourceMap": true,
@@ -25,15 +23,12 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": false,
+    "strictTemplates": false
   }
 }

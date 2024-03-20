@@ -35,9 +35,7 @@
     "typescript": "~5.2.2"
   },
   "pathMappings": {
-    "ngx-angular": [
-      "./dist/ngx-angular"
-    ]
+    "mui-angular": ["./dist/mui-angular"]
   },
   "nxJsonPlugins": [],
   "fileMap": {
@@ -84,67 +82,67 @@
         "hash": "724197941155784564"
       },
       {
-        "file": "projects/ngx-angular/.eslintrc.json",
+        "file": "projects/mui-angular/.eslintrc.json",
         "hash": "9485552448189458576"
       },
       {
-        "file": "projects/ngx-angular/README.md",
+        "file": "projects/mui-angular/README.md",
         "hash": "14950360958476992504"
       },
       {
-        "file": "projects/ngx-angular/ng-package.json",
+        "file": "projects/mui-angular/ng-package.json",
         "hash": "7342885312280147210"
       },
       {
-        "file": "projects/ngx-angular/package.json",
+        "file": "projects/mui-angular/package.json",
         "hash": "4083210944984230038"
       },
       {
-        "file": "projects/ngx-angular/src/lib/appbar/appbar.component.spec.ts",
+        "file": "projects/mui-angular/src/lib/appbar/appbar.component.spec.ts",
         "hash": "17409345505489076242"
       },
       {
-        "file": "projects/ngx-angular/src/lib/appbar/appbar.component.ts",
+        "file": "projects/mui-angular/src/lib/appbar/appbar.component.ts",
         "hash": "299045035741331627"
       },
       {
-        "file": "projects/ngx-angular/src/lib/appbar/package.json",
+        "file": "projects/mui-angular/src/lib/appbar/package.json",
         "hash": "18242720181895786609"
       },
       {
-        "file": "projects/ngx-angular/src/lib/appbar/public-api.ts",
+        "file": "projects/mui-angular/src/lib/appbar/public-api.ts",
         "hash": "12636904413582572928"
       },
       {
-        "file": "projects/ngx-angular/src/lib/button/button.component.spec.ts",
+        "file": "projects/mui-angular/src/lib/button/button.component.spec.ts",
         "hash": "14554172534536360015"
       },
       {
-        "file": "projects/ngx-angular/src/lib/button/button.component.ts",
+        "file": "projects/mui-angular/src/lib/button/button.component.ts",
         "hash": "6371712194016541578"
       },
       {
-        "file": "projects/ngx-angular/src/lib/button/package.json",
+        "file": "projects/mui-angular/src/lib/button/package.json",
         "hash": "18242720181895786609"
       },
       {
-        "file": "projects/ngx-angular/src/lib/button/public-api.ts",
+        "file": "projects/mui-angular/src/lib/button/public-api.ts",
         "hash": "11791037838174843766"
       },
       {
-        "file": "projects/ngx-angular/src/public-api.ts",
+        "file": "projects/mui-angular/src/public-api.ts",
         "hash": "13793156785622643063"
       },
       {
-        "file": "projects/ngx-angular/tsconfig.lib.json",
+        "file": "projects/mui-angular/tsconfig.lib.json",
         "hash": "12369024473565967613"
       },
       {
-        "file": "projects/ngx-angular/tsconfig.lib.prod.json",
+        "file": "projects/mui-angular/tsconfig.lib.prod.json",
         "hash": "1939170332703490951"
       },
       {
-        "file": "projects/ngx-angular/tsconfig.spec.json",
+        "file": "projects/mui-angular/tsconfig.spec.json",
         "hash": "11730399207539946696"
       },
       {

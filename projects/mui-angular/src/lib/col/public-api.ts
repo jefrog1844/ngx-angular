@@ -1,4 +1,4 @@
 /*
- * Public API Surface of @muicss/ngx-angular/col
+ * Public API Surface of @muicss/mui-angular/col
  */
 export * from './col.component';

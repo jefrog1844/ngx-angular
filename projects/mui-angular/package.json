@@ -1,5 +1,5 @@
 {
-  "name": "@muicss/ngx-angular",
+  "name": "@muicss/mui-angular",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^17.2.0",

@@ -1,4 +1,4 @@
 /*
- * Public API Surface of @muicss/ngx-angular/row
+ * Public API Surface of @muicss/mui-angular/row
  */
 export * from './row.component';
