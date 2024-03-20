@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ContainerComponent } from '../../../../ngx-angular/src/public-api';
+import { ContainerComponent } from '../../../../mui-angular/src/public-api';
 
 @Component({
   selector: 'app-home-page',

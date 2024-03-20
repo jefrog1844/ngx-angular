@@ -9,7 +9,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { FloatLabelDirective } from '../../../../ngx-angular/src/lib/shared/float-label-directive';
+import { FloatLabelDirective } from '../../../../mui-angular/src/lib/shared/float-label-directive';
 import {
   ButtonComponent,
   CheckboxComponent,
@@ -20,7 +20,7 @@ import {
   RadioComponent,
   SelectComponent,
   TextareaComponent,
-} from '../../../../ngx-angular/src/public-api';
+} from '../../../../mui-angular/src/public-api';
 
 @Component({
   selector: 'app-form-page',

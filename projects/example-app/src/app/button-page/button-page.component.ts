@@ -3,7 +3,7 @@ import {
   ButtonComponent,
   ContainerComponent,
   PanelComponent,
-} from '../../../../ngx-angular/src/public-api';
+} from '../../../../mui-angular/src/public-api';
 
 @Component({
   selector: 'app-button-page',

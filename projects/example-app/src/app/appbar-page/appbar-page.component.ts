@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {
   AppbarComponent,
   ContainerComponent,
-} from '../../../../ngx-angular/src/public-api';
+} from '../../../../mui-angular/src/public-api';
 
 @Component({
   selector: 'app-appbar-page',

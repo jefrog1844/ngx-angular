@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {
   ContainerComponent,
   PanelComponent,
-} from '../../../../ngx-angular/src/public-api';
+} from '../../../../mui-angular/src/public-api';
 
 @Component({
   selector: 'app-panel-page',

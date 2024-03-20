@@ -5,7 +5,7 @@ import {
   DropdownItemComponent,
   PanelComponent,
   RowComponent,
-} from '../../../../ngx-angular/src/public-api';
+} from '../../../../mui-angular/src/public-api';
 
 @Component({
   selector: 'app-dropdown-page',
