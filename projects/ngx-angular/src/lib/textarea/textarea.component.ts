@@ -44,7 +44,7 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
 
   @Input() placeholder?: string;
 
-  @Input() id?: any;
+  @Input() id?: string;
 
   @Input() label?: string;
 
@@ -118,7 +118,7 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
    * be available before onChanges is called.
    * @param value - value from <mui-textarea>
    */
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     // update input field with value received from outer component
     this.renderer.setProperty(this.textarea.nativeElement, 'value', value);
   }
@@ -127,13 +127,13 @@ export class TextareaComponent implements AfterViewInit, ControlValueAccessor {
    * Code below this point is all boilerplate - DO NOT CHANGE
    */
   onTouched = () => {};
-  onChange = (_: any) => {};
+  onChange: (value: string) => void;
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
