@@ -43,7 +43,7 @@ export class SelectComponent implements AfterViewInit, ControlValueAccessor {
 
   @Input() disabled?: boolean = false;
 
-  @Input() id?: any;
+  @Input() id?: string;
 
   @Input() label?: string;
 
@@ -121,7 +121,7 @@ export class SelectComponent implements AfterViewInit, ControlValueAccessor {
    * be available before onChange is called.
    * @param value - value from <mui-select>
    */
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     // update select field with value received from outer component
     this.renderer.setProperty(this.select.nativeElement, 'value', value);
   }
@@ -129,14 +129,14 @@ export class SelectComponent implements AfterViewInit, ControlValueAccessor {
   /**
    * Code below this point is all boilerplate - DO NOT CHANGE
    */
-  onTouched = () => {};
-  onChange = (_: any) => {};
+  onTouched: () => void;
+  onChange: (value: string) => void;
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
