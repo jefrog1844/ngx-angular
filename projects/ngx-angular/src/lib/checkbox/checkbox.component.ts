@@ -110,7 +110,7 @@ export class CheckboxComponent implements AfterViewInit, ControlValueAccessor {
   /**
    * Code below this point is all boilerplate - DO NOT CHANGE
    */
-  onTouched = () => {};
+  onTouched: () => void;
   onChange: (value: boolean) => void;
 
   registerOnChange(fn: () => void): void {
