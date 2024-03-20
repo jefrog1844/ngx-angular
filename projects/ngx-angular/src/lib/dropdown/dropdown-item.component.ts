@@ -17,7 +17,7 @@ export class DropdownItemComponent {
   link!: string;
 
   @ViewChild('templateref', { static: true })
-  public itemTemplate!: TemplateRef<any>;
+  public itemTemplate!: TemplateRef<HTMLLIElement>;
 
   constructor() {}
 }
