@@ -18,11 +18,12 @@ import { CustomOptionComponent } from './custom-option.component';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="mui-select" (click)="onWrapperClick($event)" #wrapper>
+    <div class="mui-select" (click)="onWrapperClick($event)">
       <select
         id="id"
         #select
         (change)="onChange($event.target.value)"
+        (mousedown)="onInnerMousedown($event)"
         (blur)="onTouched()"
         [disabled]="disabled"
         [required]="required"
@@ -67,9 +68,6 @@ export class CustomSelectComponent
 
   @ViewChild('menu', { static: true, read: ElementRef }) menu: ElementRef;
 
-  @ViewChild('wrapper', { static: true, read: ElementRef })
-  wrapperDiv: ElementRef;
-
   isOpen: boolean = false;
 
   constructor(
@@ -84,7 +82,6 @@ export class CustomSelectComponent
   ngAfterViewInit(): void {
     // cache references to select and wrapper
     const selectEl: HTMLInputElement = this.select.nativeElement;
-    const menuEl: HTMLInputElement = this.menu.nativeElement;
     const wrapperEl: HTMLElement = this.wrapper.nativeElement;
 
     // autofocus
@@ -131,10 +128,10 @@ export class CustomSelectComponent
     );
 
     if (this.useDefault) {
-      this.renderer.setAttribute(this.wrapperDiv, 'tabIndex', '-1');
+      this.renderer.setAttribute(this.wrapper, 'tabIndex', '-1');
       this.renderer.setAttribute(this.select, 'tabIndex', '0');
     } else {
-      this.renderer.setAttribute(this.wrapperDiv, 'tabIndex', '0');
+      this.renderer.setAttribute(this.wrapper, 'tabIndex', '0');
       this.renderer.setAttribute(this.select, 'tabIndex', '-1');
     }
   }
@@ -146,6 +143,14 @@ export class CustomSelectComponent
     console.log(this.isOpen);
   }
 
+  onInnerMousedown(event: MouseEvent): void {
+    // check flag
+    if (event.button !== 0 || this.useDefault) return;
+
+    // prevent built-in menu from opening
+    event.preventDefault();
+  }
+
   onWrapperClick(event: MouseEvent): void {
     if (
       event.button !== 0 ||
@@ -155,8 +160,9 @@ export class CustomSelectComponent
     ) {
       return;
     }
+
     // focus wrapper
-    //this.renderer.selectRootElement(this.menuEl).focus();
+    //this.renderer.selectRootElement(this.menu.nativeElement).focus();
 
     // open custom menu
     this.isOpen = true;
