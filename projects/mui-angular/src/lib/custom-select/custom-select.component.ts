@@ -18,7 +18,7 @@ import { CustomOptionComponent } from './custom-option.component';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="mui-select">
+    <div class="mui-select" (click)="onWrapperClick($event)" #wrapper>
       <select
         id="id"
         #select
@@ -27,11 +27,19 @@ import { CustomOptionComponent } from './custom-option.component';
         [disabled]="disabled"
         [required]="required"
         [ngClass]="{ 'mui--text-placeholder': ngControl.value === '' }"
-      ></select>
+      >
+        <ng-container *ngIf="useDefault">
+          <ng-container *ngFor="let option of options">
+            <ng-container
+              [ngTemplateOutlet]="option.optionTemplate"
+            ></ng-container>
+          </ng-container>
+        </ng-container>
+      </select>
       <label [for]="id" tabindex="-1">{{ label }}</label>
-      <div class="mui-select__menu" #menu>
-        <ng-container *ngFor="let item of items">
-          <ng-container [ngTemplateOutlet]="item.itemTemplate"></ng-container>
+      <div class="mui-select__menu" #menu *ngIf="isOpen && !useDefault">
+        <ng-container *ngFor="let option of options">
+          <div (click)="chooseOption($event, option)">{{ option.label }}</div>
         </ng-container>
       </div>
     </div>
@@ -44,6 +52,8 @@ export class CustomSelectComponent
 
   @Input() disabled?: boolean = false;
 
+  @Input() useDefault?: boolean = false;
+
   @Input() id?: string;
 
   @Input() label?: string;
@@ -51,9 +61,16 @@ export class CustomSelectComponent
   @Input() required?: boolean = false;
 
   @ContentChildren(CustomOptionComponent)
-  items!: QueryList<CustomOptionComponent>;
+  options!: QueryList<CustomOptionComponent>;
 
   @ViewChild('select', { static: true, read: ElementRef }) select: ElementRef;
+
+  @ViewChild('menu', { static: true, read: ElementRef }) menu: ElementRef;
+
+  @ViewChild('wrapper', { static: true, read: ElementRef })
+  wrapperDiv: ElementRef;
+
+  isOpen: boolean = false;
 
   constructor(
     @Self() public ngControl: NgControl,
@@ -61,11 +78,13 @@ export class CustomSelectComponent
     private wrapper: ElementRef
   ) {
     ngControl.valueAccessor = this;
+    console.log(wrapper);
   }
 
   ngAfterViewInit(): void {
     // cache references to select and wrapper
     const selectEl: HTMLInputElement = this.select.nativeElement;
+    const menuEl: HTMLInputElement = this.menu.nativeElement;
     const wrapperEl: HTMLElement = this.wrapper.nativeElement;
 
     // autofocus
@@ -102,7 +121,7 @@ export class CustomSelectComponent
     this.renderer.removeAttribute(wrapperEl, 'id');
 
     // set the selected index
-    const index = this.items
+    const index = this.options
       .toArray()
       .findIndex((option) => option.value === this.ngControl.value);
     this.renderer.setProperty(
@@ -110,6 +129,37 @@ export class CustomSelectComponent
       'selectedIndex',
       index
     );
+
+    if (this.useDefault) {
+      this.renderer.setAttribute(this.wrapperDiv, 'tabIndex', '-1');
+      this.renderer.setAttribute(this.select, 'tabIndex', '0');
+    } else {
+      this.renderer.setAttribute(this.wrapperDiv, 'tabIndex', '0');
+      this.renderer.setAttribute(this.select, 'tabIndex', '-1');
+    }
+  }
+
+  chooseOption(event: MouseEvent, option: CustomOptionComponent): void {
+    event.preventDefault();
+    console.log(this.isOpen);
+    this.isOpen = false;
+    console.log(this.isOpen);
+  }
+
+  onWrapperClick(event: MouseEvent): void {
+    if (
+      event.button !== 0 ||
+      event.defaultPrevented ||
+      this.useDefault ||
+      this.disabled
+    ) {
+      return;
+    }
+    // focus wrapper
+    //this.renderer.selectRootElement(this.menuEl).focus();
+
+    // open custom menu
+    this.isOpen = true;
   }
 
   /**
