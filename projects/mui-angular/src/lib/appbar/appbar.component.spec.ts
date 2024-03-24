@@ -25,4 +25,11 @@ describe('AppbarComponent', () => {
   it('appbar should have class mui-appbar', () => {
     expect(appbarEl).toHaveClass('mui-appbar');
   });
+
+  it('appbar should have class mui--z5', () => {
+    component.depth = 'z5';
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    expect(appbarEl).toHaveClass('mui--z5');
+  });
 });
