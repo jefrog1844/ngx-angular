@@ -40,4 +40,10 @@ describe('ButtonComponent', () => {
   it('button should be size large', () => {
     expect(button).toHaveClass('mui-btn--large');
   });
+
+  it('button should be disabled', () => {
+    component.disabled = true;
+    fixture.detectChanges();
+    expect(button.disabled).toBeTrue();
+  });
 });
