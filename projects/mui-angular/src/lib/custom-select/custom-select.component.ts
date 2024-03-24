@@ -76,7 +76,6 @@ export class CustomSelectComponent
     private wrapper: ElementRef
   ) {
     ngControl.valueAccessor = this;
-    console.log(wrapper);
   }
 
   ngAfterViewInit(): void {
@@ -128,11 +127,11 @@ export class CustomSelectComponent
     );
 
     if (this.useDefault) {
-      this.renderer.setAttribute(this.wrapper, 'tabIndex', '-1');
-      this.renderer.setAttribute(this.select, 'tabIndex', '0');
+      this.renderer.setAttribute(wrapperEl, 'tabIndex', '-1');
+      this.renderer.setAttribute(selectEl, 'tabIndex', '0');
     } else {
-      this.renderer.setAttribute(this.wrapper, 'tabIndex', '0');
-      this.renderer.setAttribute(this.select, 'tabIndex', '-1');
+      this.renderer.setAttribute(wrapperEl, 'tabIndex', '0');
+      this.renderer.setAttribute(selectEl, 'tabIndex', '-1');
     }
   }
 
