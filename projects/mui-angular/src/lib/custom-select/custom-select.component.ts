@@ -18,9 +18,16 @@ import { CustomOptionComponent } from './custom-option.component';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="mui-select" (click)="onWrapperClick($event)">
+    <div
+      #wrapper
+      class="mui-select"
+      (blur)="onWrapperBlurOrFocus($event)"
+      (focus)="onWrapperBlurOrFocus($event)"
+      (click)="onWrapperClick($event)"
+      (keydown)="onWrapperKeydown($event)"
+      (keypress)="onWrapperKeypress($event)"
+    >
       <select
-        id="id"
         #select
         (change)="onChange($event.target.value)"
         (mousedown)="onInnerMousedown($event)"
@@ -66,14 +73,15 @@ export class CustomSelectComponent
 
   @ViewChild('select', { static: true, read: ElementRef }) select: ElementRef;
 
+  @ViewChild('wrapper', { static: true, read: ElementRef }) wrapper: ElementRef;
+
   @ViewChild('menu', { static: true, read: ElementRef }) menu: ElementRef;
 
   isOpen: boolean = false;
 
   constructor(
     @Self() public ngControl: NgControl,
-    private renderer: Renderer2,
-    private wrapper: ElementRef
+    private renderer: Renderer2
   ) {
     ngControl.valueAccessor = this;
   }
@@ -114,7 +122,7 @@ export class CustomSelectComponent
     });
 
     // remove attributes from wrapper
-    this.renderer.removeAttribute(wrapperEl, 'id');
+    //this.renderer.removeAttribute(wrapperEl, 'id');
 
     // set the selected index
     const index = this.options
@@ -134,6 +142,53 @@ export class CustomSelectComponent
       this.renderer.setAttribute(selectEl, 'tabIndex', '-1');
     }
   }
+
+  onWrapperKeydown(event: KeyboardEvent): void {
+    console.log(event.target);
+    // exit if preventDefault() was called or useDefault is true
+    if (event.defaultPrevented || this.useDefault) return;
+
+    var keyCode = event.keyCode;
+    console.log(`keyCode: ${keyCode}`);
+    if (this.isOpen === false) {
+      // spacebar, down, up
+      if (keyCode === 32 || keyCode === 38 || keyCode === 40) {
+        // prevent win scroll
+        event.preventDefault();
+
+        // open menu
+        this.isOpen = true;
+      }
+    } else {
+      // tab
+      if (keyCode === 9) {
+        this.isOpen = false;
+      }
+
+      // escape | up | down | enter
+      if (
+        keyCode === 27 ||
+        keyCode === 40 ||
+        keyCode === 38 ||
+        keyCode === 13
+      ) {
+        event.preventDefault();
+      }
+
+      //  var options = selectEl.children(),
+      //      nextIndex = null,
+      //      i;
+
+      if (keyCode === 27) {
+        // escape -> close
+        this.isOpen = false;
+      }
+    }
+  }
+
+  onWrapperKeypress(event: KeyboardEvent): void {}
+
+  onWrapperBlurOrFocus(event: Event): void {}
 
   chooseOption(event: MouseEvent, option: CustomOptionComponent): void {
     event.preventDefault();
@@ -161,7 +216,7 @@ export class CustomSelectComponent
     }
 
     // focus wrapper
-    //this.renderer.selectRootElement(this.menu.nativeElement).focus();
+    this.wrapper.nativeElement.focus();
 
     // open custom menu
     this.isOpen = true;
