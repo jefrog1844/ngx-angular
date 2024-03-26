@@ -79,6 +79,8 @@ export class CustomSelectComponent
 
   isOpen: boolean = false;
 
+  menuIndex: number = 0;
+
   constructor(
     @Self() public ngControl: NgControl,
     private renderer: Renderer2
@@ -144,12 +146,11 @@ export class CustomSelectComponent
   }
 
   onWrapperKeydown(event: KeyboardEvent): void {
-    console.log(event.target);
     // exit if preventDefault() was called or useDefault is true
     if (event.defaultPrevented || this.useDefault) return;
 
     var keyCode = event.keyCode;
-    console.log(`keyCode: ${keyCode}`);
+
     if (this.isOpen === false) {
       // spacebar, down, up
       if (keyCode === 32 || keyCode === 38 || keyCode === 40) {
@@ -178,9 +179,43 @@ export class CustomSelectComponent
       //  var options = selectEl.children(),
       //      nextIndex = null,
       //      i;
+      var nextIndex = null;
+      var i;
 
       if (keyCode === 27) {
         // escape -> close
+        this.isOpen = false;
+      } else if (keyCode === 40) {
+        // down -> increment
+        i = this.menuIndex + 1;
+        while (i < this.options.length) {
+          // exit if option not disabled
+          if (!this.options.get(i).disabled && !this.options.get(i).hidden) {
+            nextIndex = i;
+            break;
+          }
+          i += 1;
+        }
+        if (nextIndex !== null) {
+          this.menuIndex = nextIndex;
+        }
+      } else if (keyCode === 38) {
+        // up -> decrement
+        i = this.menuIndex - 1;
+        while (i > -1) {
+          // exit if option not disabled
+          if (!this.options.get(i).disabled && !this.options.get(i).hidden) {
+            nextIndex = i;
+            break;
+          }
+          i -= 1;
+        }
+        if (nextIndex !== null) {
+          this.menuIndex = nextIndex;
+        }
+      } else if (keyCode === 13) {
+        // enter -> choose and close
+        //dispatchChange(options[scope.menuIndex]);
         this.isOpen = false;
       }
     }
@@ -192,9 +227,7 @@ export class CustomSelectComponent
 
   chooseOption(event: MouseEvent, option: CustomOptionComponent): void {
     event.preventDefault();
-    console.log(this.isOpen);
     this.isOpen = false;
-    console.log(this.isOpen);
   }
 
   onInnerMousedown(event: MouseEvent): void {
