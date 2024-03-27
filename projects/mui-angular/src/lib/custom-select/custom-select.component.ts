@@ -7,11 +7,16 @@ import {
   Input,
   QueryList,
   Renderer2,
+  RendererStyleFlags2,
   Self,
   ViewChild,
+  inject,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { CustomOptionComponent } from './custom-option.component';
+import { SelectPresenter } from './select.presenter';
+
+const importantFlag = RendererStyleFlags2.Important;
 
 @Component({
   selector: 'mui-custom-select',
@@ -81,10 +86,28 @@ export class CustomSelectComponent
 
   menuIndex: number = 0;
 
+  private selectPresenter: SelectPresenter;
+
   constructor(
     @Self() public ngControl: NgControl,
     private renderer: Renderer2
   ) {
+    this.selectPresenter = inject(SelectPresenter);
+
+    this.selectPresenter.open$.subscribe((open) => {
+      this.isOpen = open;
+      if (open) {
+        this.renderer.setStyle(
+          document.body,
+          'overflow',
+          'hidden',
+          importantFlag
+        );
+      } else {
+        this.renderer.removeStyle(document.body, 'overflow');
+      }
+    });
+
     ngControl.valueAccessor = this;
   }
 
@@ -151,19 +174,21 @@ export class CustomSelectComponent
 
     var keyCode = event.keyCode;
 
-    if (this.isOpen === false) {
+    if (!this.isOpen) {
       // spacebar, down, up
       if (keyCode === 32 || keyCode === 38 || keyCode === 40) {
         // prevent win scroll
         event.preventDefault();
 
         // open menu
-        this.isOpen = true;
+        //this.isOpen = true;
+        this.selectPresenter.setOpen(true);
       }
     } else {
       // tab
       if (keyCode === 9) {
-        this.isOpen = false;
+        //this.isOpen = false;
+        this.selectPresenter.setOpen(false);
       }
 
       // escape | up | down | enter
@@ -184,7 +209,8 @@ export class CustomSelectComponent
 
       if (keyCode === 27) {
         // escape -> close
-        this.isOpen = false;
+        //this.isOpen = false;
+        this.selectPresenter.setOpen(false);
       } else if (keyCode === 40) {
         // down -> increment
         i = this.menuIndex + 1;
@@ -216,7 +242,8 @@ export class CustomSelectComponent
       } else if (keyCode === 13) {
         // enter -> choose and close
         //dispatchChange(options[scope.menuIndex]);
-        this.isOpen = false;
+        //this.isOpen = false;
+        this.selectPresenter.setOpen(false);
       }
     }
   }
@@ -227,7 +254,8 @@ export class CustomSelectComponent
 
   chooseOption(event: MouseEvent, option: CustomOptionComponent): void {
     event.preventDefault();
-    this.isOpen = false;
+    //this.isOpen = false;
+    this.selectPresenter.setOpen(false);
   }
 
   onInnerMousedown(event: MouseEvent): void {
@@ -252,7 +280,8 @@ export class CustomSelectComponent
     this.wrapper.nativeElement.focus();
 
     // open custom menu
-    this.isOpen = true;
+    //this.isOpen = true;
+    this.selectPresenter.setOpen(true);
   }
 
   /**
