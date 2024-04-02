@@ -347,53 +347,29 @@
   <h2>Select - Reactive</h2>
   <mui-panel>
     <form class="mui-form" [formGroup]="selectForm">
-      <mui-custom-select
+      <mui-select
         useDefault="true"
         id="inputA"
         formControlName="inputA"
         label="Select 1"
       >
-        <mui-custom-option value="" label="enter value"></mui-custom-option>
-        <mui-custom-option
-          value="option-1"
-          label="Option 1"
-        ></mui-custom-option>
-        <mui-custom-option
-          value="option-2"
-          label="Option 2"
-        ></mui-custom-option>
-        <mui-custom-option
-          value="option-3"
-          label="Option 3"
-        ></mui-custom-option>
-        <mui-custom-option
-          value="option-4"
-          label="Option 4"
-        ></mui-custom-option>
-      </mui-custom-select>
-      <mui-custom-select
+        <mui-option value="" label="enter value"></mui-option>
+        <mui-option value="option-1" label="Option 1"></mui-option>
+        <mui-option value="option-2" label="Option 2"></mui-option>
+        <mui-option value="option-3" label="Option 3"></mui-option>
+        <mui-option value="option-4" label="Option 4"></mui-option>
+      </mui-select>
+      <mui-select
         id="inputB"
         formControlName="inputB"
         label="Select 2 (required)"
       >
-        <mui-custom-option value="" label="enter value"></mui-custom-option>
-        <mui-custom-option
-          value="option-1"
-          label="Option 1"
-        ></mui-custom-option>
-        <mui-custom-option
-          value="option-2"
-          label="Option 2"
-        ></mui-custom-option>
-        <mui-custom-option
-          value="option-3"
-          label="Option 3"
-        ></mui-custom-option>
-        <mui-custom-option
-          value="option-4"
-          label="Option 4"
-        ></mui-custom-option>
-      </mui-custom-select>
+        <mui-option value="" label="enter value"></mui-option>
+        <mui-option value="option-1" label="Option 1"></mui-option>
+        <mui-option value="option-2" label="Option 2"></mui-option>
+        <mui-option value="option-3" label="Option 3"></mui-option>
+        <mui-option value="option-4" label="Option 4"></mui-option>
+      </mui-select>
       <mui-select
         id="inputC"
         formControlName="inputC"

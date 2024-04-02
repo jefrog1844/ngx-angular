@@ -9,8 +9,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CustomOptionComponent } from '../../../../mui-angular/src/lib/custom-select/custom-option.component';
-import { CustomSelectComponent } from '../../../../mui-angular/src/lib/custom-select/custom-select.component';
 import { FloatLabelDirective } from '../../../../mui-angular/src/lib/shared/float-label-directive';
 import {
   ButtonComponent,
@@ -41,8 +39,6 @@ import {
     ButtonComponent,
     RadioComponent,
     FloatLabelDirective,
-    CustomSelectComponent,
-    CustomOptionComponent,
   ],
   templateUrl: './form-page.component.html',
   styleUrl: './form-page.component.scss',
