@@ -50,7 +50,12 @@ const importantFlag = RendererStyleFlags2.Important;
         </ng-container>
       </select>
       <label [for]="id" tabindex="-1">{{ label }}</label>
-      <div class="mui-select__menu" #menu *ngIf="isOpen && !useDefault">
+      <div
+        id="menu"
+        class="mui-select__menu"
+        #menu
+        *ngIf="isOpen && !useDefault"
+      >
         <ng-container *ngFor="let option of options">
           <div (click)="chooseOption($event, option)">{{ option.label }}</div>
         </ng-container>
@@ -103,6 +108,12 @@ export class CustomSelectComponent
           'hidden',
           importantFlag
         );
+        setTimeout(() => {
+          const menuDiv = document.getElementById('menu');
+          console.log(menuDiv);
+          console.log(this.menu);
+          this.renderer.setStyle(menuDiv, 'top', '-200px');
+        }, 100);
       } else {
         this.renderer.removeStyle(document.body, 'overflow');
       }
